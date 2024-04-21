@@ -4,6 +4,7 @@ CREATE TABLE rooms (
 	room_capacity	INTEGER(3)
 );
 
+-- this table will probably need changing
 CREATE TABLE boundaries (
 	boundaries_id		VARCHAR(2) PRIMARY KEY,
 	boundaries_range	VARCHAR(6) NOT NULL,
@@ -35,15 +36,16 @@ CREATE TABLE course_modules (
 	PRIMARY KEY (course_id, module_id)
 );
 
-
 -- staff_status: 'L' for live or 'D' for dormant
 -- staff_status_reason: e.g. retired, resigned, misconduct
 CREATE TABLE staff (
-	staff_id			INTEGER(8) PRIMARY KEY,
+	staff_id			INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
 	staff_forename		VARCHAR,
 	staff_middlenames	VARCHAR,
 	staff_surname		VARCHAR,
-	staff_roles			VARCHAR,
+	staff_role_cl		BOOLEAN,
+	staff_role_ml		BOOLEAN,
+	staff_role_pt		BOOLEAN,
 	staff_address		VARCHAR,
 	staff_telephone		VARCHAR,
 	staff_email			VARCHAR,
@@ -56,7 +58,7 @@ CREATE TABLE staff (
 -- student_status: 'L' for live or 'D' for dormant
 -- student_status_reason: e.g. graduated, withdrawn, terminated
 CREATE TABLE students (
-	student_id						INTEGER(8) PRIMARY KEY,
+	student_id						INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
 	student_forename				VARCHAR,
 	student_middlenames				VARCHAR,
 	student_surname					VARCHAR,
@@ -70,12 +72,23 @@ CREATE TABLE students (
 	student_entry_qualifications	VARCHAR
 );
 
-CREATE TABLE attendance (
+-- FKs: module_id, lecture_room
+-- lecture_duration: length of lecture in minutes
+CREATE TABLE lectures (
+	lecture_id			INTEGER(8) PRIMARY KEY,
 	module_id			INTEGER(4),
+	module_week			INTEGER(2),
+	lecture_room		VARCHAR(4),
+	lecture_datetime	DATETIME,
+	lecture_duration	INTEGER(4),
+);
+
+-- FKs: student_id, lecture_id
+CREATE TABLE attendance (
 	student_id			INTEGER(8),
-	attendance_week		INTEGER(2),
+	lecture_id			INTEGER(8)
 	attendance_value	CHAR(1),
-	PRIMARY KEY (module_id, student_id, attendance_week)
+	PRIMARY KEY (student_id, lecture_id)
 );
 
 
@@ -87,27 +100,43 @@ ADD CONSTRAINT fk_mod_staff
 FOREIGN KEY (module_leader)
 REFERENCES staff(staff_id);
 
-ALTER TABLE course_students
-ADD CONSTRAINT fk_cs_courses
+ALTER TABLE course_modules
+ADD CONSTRAINT fk_cm_courses
 FOREIGN KEY (course_id)
 REFERENCES courses(course_id);
 
-ALTER TABLE course_students
-ADD CONSTRAINT fk_cs_modules
+ALTER TABLE course_modules
+ADD CONSTRAINT fk_cm_modules
 FOREIGN KEY (module_id)
 REFERENCES modules(module_id);
+
+-- TODO: set up function for student IDs
+ALTER TABLE staff AUTO_INCREMENT=99100000;
+ALTER TABLE students AUTO_INCREMENT=20000000;
 
 ALTER TABLE students
 ADD CONSTRAINT fk_stu_courses
 FOREIGN KEY (student_course)
 REFERENCES courses(course_id);
 
-ALTER TABLE attendance
-ADD CONSTRAINT fk_att_modules
+ALTER TABLE lectures
+ADD CONSTRAINT fk_lec_modules
 FOREIGN KEY (module_id)
 REFERENCES modules(module_id);
+
+ALTER TABLE lectures
+ADD CONSTRAINT fk_lec_rooms
+FOREIGN KEY (lecture_room)
+REFERENCES rooms(room_id);
 
 ALTER TABLE attendance
 ADD CONSTRAINT fk_att_students
 FOREIGN KEY (student_id)
 REFERENCES students(student_id);
+
+ALTER TABLE attendance
+ADD CONSTRAINT fk_att_lectures
+FOREIGN KEY (lecture_id)
+REFERENCES lectures(lecture_id);
+
+
