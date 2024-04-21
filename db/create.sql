@@ -1,6 +1,6 @@
 CREATE TABLE rooms (
 	room_id			VARCHAR(4) PRIMARY KEY,
-	room_type		VARCHAR,
+	room_type		VARCHAR(255),
 	room_capacity	INTEGER(3)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE modules (
 	module_id		INTEGER(4) PRIMARY KEY,
 	module_year		INTEGER(1) NOT NULL,
 	module_points	INTEGER(2) NOT NULL,
-	module_title	VARCHAR NOT NULL,
+	module_title	VARCHAR(255) NOT NULL,
 	module_as1		INTEGER(3),
 	module_as2		INTEGER(3),
 	module_exam		INTEGER(3),
@@ -26,7 +26,7 @@ CREATE TABLE modules (
 
 CREATE TABLE courses (
 	course_id			INTEGER(8) PRIMARY KEY,
-	course_name			VARCHAR
+	course_name			VARCHAR(255)
 );
 
 -- courses <=> modules are a many-many relationship. make a junction table
@@ -40,18 +40,18 @@ CREATE TABLE course_modules (
 -- staff_status_reason: e.g. retired, resigned, misconduct
 CREATE TABLE staff (
 	staff_id			INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
-	staff_forename		VARCHAR,
-	staff_middlenames	VARCHAR,
-	staff_surname		VARCHAR,
+	staff_forename		VARCHAR(255),
+	staff_middlenames	VARCHAR(255),
+	staff_surname		VARCHAR(255),
 	staff_role_cl		BOOLEAN,
 	staff_role_ml		BOOLEAN,
 	staff_role_pt		BOOLEAN,
-	staff_address		VARCHAR,
-	staff_telephone		VARCHAR,
-	staff_email			VARCHAR,
+	staff_address		VARCHAR(255),
+	staff_telephone		VARCHAR(255),
+	staff_email			VARCHAR(255),
 	staff_status		CHAR(1),
-	staff_status_reason	VARCHAR,
-	staff_specialism	VARCHAR
+	staff_status_reason	VARCHAR(255),
+	staff_specialism	VARCHAR(255)
 );
 
 -- FKs: student_course
@@ -65,17 +65,17 @@ CREATE TABLE staff (
 -- ## end student_id format ## --
 CREATE TABLE students (
 	student_id						INTEGER(8) PRIMARY KEY,
-	student_forename				VARCHAR,
-	student_middlenames				VARCHAR,
-	student_surname					VARCHAR,
-	student_term_address			VARCHAR,
-	student_nonterm_address			VARCHAR,
-	student_telephone				VARCHAR,
-	student_email					VARCHAR,
+	student_forename				VARCHAR(255),
+	student_middlenames				VARCHAR(255),
+	student_surname					VARCHAR(255),
+	student_term_address			VARCHAR(255),
+	student_nonterm_address			VARCHAR(255),
+	student_telephone				VARCHAR(255),
+	student_email					VARCHAR(255),
 	student_status					CHAR(1),
-	student_status_reason			VARCHAR,
+	student_status_reason			VARCHAR(255),
 	student_course					INTEGER(8),
-	student_entry_qualifications	VARCHAR
+	student_entry_qualifications	VARCHAR(255)
 );
 
 -- FKs: module_id, lecture_room
@@ -86,13 +86,13 @@ CREATE TABLE lectures (
 	module_week			INTEGER(2),
 	lecture_room		VARCHAR(4),
 	lecture_datetime	DATETIME,
-	lecture_duration	INTEGER(4),
+	lecture_duration	INTEGER(4)
 );
 
 -- FKs: student_id, lecture_id
 CREATE TABLE attendance (
 	student_id			INTEGER(8),
-	lecture_id			INTEGER(8)
+	lecture_id			INTEGER(8),
 	attendance_value	CHAR(1),
 	PRIMARY KEY (student_id, lecture_id)
 );
