@@ -57,8 +57,14 @@ CREATE TABLE staff (
 -- FKs: student_course
 -- student_status: 'L' for live or 'D' for dormant
 -- student_status_reason: e.g. graduated, withdrawn, terminated
+-- ## student_id format ## --
+-- first digit = century e.g. 2024 == '2', 2124 == '3'
+-- 2nd/3rd digit = current year e.g. 2024 == '24', 2025 == '25'
+-- 4th-8th digits = increment
+-- PL/SQL is cringe, so we're managing ID generation in PHP
+-- ## end student_id format ## --
 CREATE TABLE students (
-	student_id						INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
+	student_id						INTEGER(8) PRIMARY KEY,
 	student_forename				VARCHAR,
 	student_middlenames				VARCHAR,
 	student_surname					VARCHAR,
@@ -112,7 +118,6 @@ REFERENCES modules(module_id);
 
 -- TODO: set up function for student IDs
 ALTER TABLE staff AUTO_INCREMENT=99100000;
-ALTER TABLE students AUTO_INCREMENT=20000000;
 
 ALTER TABLE students
 ADD CONSTRAINT fk_stu_courses
