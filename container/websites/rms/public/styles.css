@@ -1,0 +1,123 @@
+.logo-container {
+    text-align: center;
+  }
+  
+  .logo {
+    width: 100px; /* adjust width as needed */
+    height: auto;
+    margin-bottom: 10px; /* add margin for spacing */
+  }
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make the login container take the full height of the viewport */
+  }
+  
+  .login-form {
+    width: 300px; /* adjust width as needed */
+  }
+  
+  .btn-purple {
+    background-color: #7C6D8A; /* Adjust color as needed */
+    border-color: #7C6D8A; /* Adjust border color as needed */
+  }
+  
+  .btn-purple:hover {
+    background-color: #673ab7; /* Adjust hover color as needed */
+    border-color: #673ab7; /* Adjust hover border color as needed */
+  }
+  
+/* rms layout */
+
+.sidenav {
+    height: 88vh; /* Set sidebar height to 90% of the viewport height */
+    overflow-y: auto; /* Add vertical scrollbar if needed */
+}
+
+.rmslogo {
+    height: 8vh; /* Adjust the height of the logo */
+    width: auto; /* Let the width adjust accordingly to maintain aspect ratio */
+    margin: 10px 10px; /* Add some margin to the logo */
+}
+
+  /* Ensure logo aligns properly with the title */
+  img {
+    vertical-align: middle;
+  }
+  
+  /* Adjust button styles */
+  .btn-block {
+    border-radius: 0;
+  }
+  
+  /* Selected styling */
+  .btn-selected {
+    background-color: #e9ecef; /* Change the background color when selected */
+    transform: scale(1.1); /* Increase button size with animation */
+    color:black;
+    outline: none;
+
+  }
+
+  .container-fluid.bg-primary.text-light.py-4 {
+    background-color: #7C6D8A !important; /* Change the background color of the top bar */
+  }
+
+  
+/* Body background */
+body {
+    background-color: #e9ecef; /* Slightly darker grey background color */
+    /*overflow: hidden; - commented out as need to be looked at*/
+  }
+
+.user-logged{
+    text-align: right;
+}
+.user-logo{
+    height: 5vh;
+    width: auto;
+    margin: 10px 10px;
+}
+
+.link-user{
+    margin: 10px 10px; /* Add some margin to the links */
+}
+
+.table-container {
+  margin-bottom: 50px; /* Adjust to make space for the bottom bar */
+  overflow-x: auto; /* Allow horizontal scrolling */
+  max-width: 80vw; /* Set a maximum width for the container */
+  margin-left: auto; /* Center the container horizontally */
+  margin-right: auto;
+}
+
+.table {
+  min-width: 100%; /* Ensure table expands to fill the container */
+}
+
+.bottom-bar {
+  background-color: white;
+  padding: 10px;
+}
+
+.table th, .table td {
+  padding: 12px; /* Increase padding for more separation */
+  border: 2px solid #ddd; /* Add solid border with a light gray color */
+}
+
+.table th {
+  background-color: #f2f2f2; /* Light gray background for table headers */
+}
+
+.bottom-bar .btn {
+  width: 100%; /* Make buttons fill the entire width of their container */
+}
+
+.bottom-bar .col-2 {
+  padding: 5px; /* Add padding to create spacing between buttons */
+}
+
+
