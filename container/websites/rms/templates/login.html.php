@@ -2,7 +2,7 @@
 
 <div class="login-container">
   <div class="logo-container">
-    <img src="woodlandslogo.jpg" alt="Woodlands University Logo" class="logo">
+    <img src="/img/woodlandslogo.jpg" alt="Woodlands University Logo" class="logo">
     <h1 class="text-center">Woodlands University</h1>
   </div>
   <form class="login-form" method="post">

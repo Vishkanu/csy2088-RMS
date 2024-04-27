@@ -4,14 +4,14 @@
     <div class="container-fluid bg-primary text-light py-4">
         <div class="row align-items-center">
             <div class="col-auto">
-                <img src="woodlandslogo.jpg" alt="Woodlands University Logo" class="rmslogo">
+                <img src="/img/woodlandslogo.jpg" alt="Woodlands University Logo" class="rmslogo">
             </div>
             <div class="col-auto">
                 <h1 class="text-center">Woodlands University - Records Management System</h1>
             </div>
             <div class="col user-logged">
                 <div class="image-container-user">
-                    <img src="user.png" alt="User Profile Image" class="user-logo">
+                    <img src="/img/user.png" alt="User Profile Image" class="user-logo">
                 </div>
                 <h5>Logged in as: Username</h5>
                 <p>Last logged in: </p>
