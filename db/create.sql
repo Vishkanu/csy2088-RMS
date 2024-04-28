@@ -27,7 +27,8 @@ CREATE TABLE staff (
 	staff_password		VARCHAR(255),
 	staff_status		CHAR(1),
 	staff_status_reason	VARCHAR(255),
-	staff_specialism	VARCHAR(255)
+	staff_specialism	VARCHAR(255),
+	staff_lastlogged	DATETIME DEFAULT NOW()
 );
 
 -- FKs: module_leader
