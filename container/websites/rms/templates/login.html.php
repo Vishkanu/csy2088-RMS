@@ -17,6 +17,11 @@
     </div>
     <button type="submit" class="btn btn-purple btn-block">Login</button>
   </form>
+<?php
+if (isset($auth_failed)) { ?>
+	<p>Authentication Failed</p>
+<?php } ?>
+
 </div>
 
 </body>

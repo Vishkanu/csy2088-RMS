@@ -1,12 +1,12 @@
 <?php
 session_start();
-//require '../pdo.php';
+require '../pdo.php';
 require '../autoload.php';
 require '../loadTemplate.php';
 
 // TODO: db
-//$database = new classes\DatabaseHandler($pdo);
-$database = '';
+$database = new classes\DatabaseHandler($pdo);
+//$database = '';
 
 // structure it as an array, in case more controllers are implemented later.
 $controllers = [
@@ -16,17 +16,20 @@ $controllers = [
 $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
 
 // use route to determine correct controller
-if ($route != '') {
+if ($route == '') {
+	// only one controller currently - default to it
+	header('Location: /rms/login');
+
+	//$route = 'rms/login';
+	//list($controllerName, $action) = explode('/', $route);
+	//$page = $controllers[$controllerName]->$action();
+}
+else {
 	list($controllerName, $action) = explode('/', $route);
 	$page = $controllers[$controllerName]->$action();
 }
-else {
-	// only one controller currently - default to it
-	$page = $controllers['rms']->login();
-	$route = '/rms';
-}
 
-$allowedActions = ['login', 'students'];
+$allowedActions = ['login', 'students', 'home'];
 
 if (isset($controllerName) && in_array($action, $allowedActions))
 {
@@ -35,9 +38,11 @@ if (isset($controllerName) && in_array($action, $allowedActions))
 		'title' => $page['title']
 	]);
 
-	if (isset($controllerName) && $action === 'login') {
-		echo loadTemplate("../templates/login.html.php", []);
-	} else if (isset($controllerName) && $action == 'students') {
-		echo loadTemplate("../templates/students.html.php", []);
-	}
+	echo loadTemplate("../templates/$action.html.php", $page);
+
+	#if (isset($controllerName) && $action === 'login') {
+	#	echo loadTemplate("../templates/login.html.php", []);
+	#} else if (isset($controllerName) && $action == 'students') {
+	#	echo loadTemplate("../templates/students.html.php", []);
+	#}
 }

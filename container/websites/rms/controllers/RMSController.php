@@ -13,9 +13,26 @@ class RMSController
 
 	public function login()
 	{
-		return [
-			'title' => 'Woodlands University: Staff RMS Login'
-		];
+		$returnArr = ['title' => 'Woodlands University: Staff RMS Login'];
+
+		// authentication logic
+		if (isset($_SESSION['auth_id'])) {
+			// already authenticated
+			header('Location: /rms/students');
+		}
+		else if (isset($_POST['username']) && isset($_POST['password'])) {
+			$auth = $this->db->authenticate_staff($_POST['username'], $_POST['password'], 'staff');
+			if ($auth[0] === true) {
+				// auth success!
+				$_SESSION['auth_id'] = $auth[1];
+				header('Location: /rms/students');
+			}
+			else {
+				$returnArr['auth_failed'] = true;
+			}
+		}
+
+		return $returnArr;
 	}
 
 	public function students()
@@ -28,4 +45,3 @@ class RMSController
 
 
 ?>
-

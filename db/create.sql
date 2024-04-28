@@ -11,6 +11,24 @@ CREATE TABLE boundaries (
 	boundaries_class	VARCHAR(10) NOT NULL
 );
 
+-- staff_status: 'L' for live or 'D' for dormant
+-- staff_status_reason: e.g. retired, resigned, misconduct
+CREATE TABLE staff (
+	staff_id			INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
+	staff_forename		VARCHAR(255),
+	staff_middlenames	VARCHAR(255),
+	staff_surname		VARCHAR(255),
+	staff_role_cl		BOOLEAN,
+	staff_role_ml		BOOLEAN,
+	staff_role_pt		BOOLEAN,
+	staff_address		VARCHAR(255),
+	staff_telephone		VARCHAR(255),
+	staff_email			VARCHAR(255) UNIQUE,
+	staff_password		VARCHAR(255),
+	staff_status		CHAR(1),
+	staff_status_reason	VARCHAR(255),
+	staff_specialism	VARCHAR(255)
+);
 
 -- FKs: module_leader
 CREATE TABLE modules (
@@ -34,24 +52,6 @@ CREATE TABLE course_modules (
 	course_id		INTEGER(8),
 	module_id		INTEGER(4),
 	PRIMARY KEY (course_id, module_id)
-);
-
--- staff_status: 'L' for live or 'D' for dormant
--- staff_status_reason: e.g. retired, resigned, misconduct
-CREATE TABLE staff (
-	staff_id			INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
-	staff_forename		VARCHAR(255),
-	staff_middlenames	VARCHAR(255),
-	staff_surname		VARCHAR(255),
-	staff_role_cl		BOOLEAN,
-	staff_role_ml		BOOLEAN,
-	staff_role_pt		BOOLEAN,
-	staff_address		VARCHAR(255),
-	staff_telephone		VARCHAR(255),
-	staff_email			VARCHAR(255),
-	staff_status		CHAR(1),
-	staff_status_reason	VARCHAR(255),
-	staff_specialism	VARCHAR(255)
 );
 
 -- FKs: student_course
