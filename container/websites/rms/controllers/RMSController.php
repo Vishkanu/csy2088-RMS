@@ -22,9 +22,11 @@ class RMSController
 		}
 		else if (isset($_POST['username']) && isset($_POST['password'])) {
 			$auth = $this->db->authenticate_staff($_POST['username'], $_POST['password'], 'staff');
-			if ($auth[0] === true) {
+			if ($auth['auth_success'] === true) {
 				// auth success!
-				$_SESSION['auth_id'] = $auth[1];
+				$_SESSION['auth_id'] = $auth['staff_id'];
+				$_SESSION['lastlogged'] = $auth['lastlogged'];
+				$_SESSION['auth_name'] = $auth['auth_name'];
 				header('Location: /rms/students');
 			}
 			else {
@@ -38,7 +40,7 @@ class RMSController
 	public function students()
 	{
 		return [
-			'title' => 'Woodlands University - Records Management System'
+			'title' => 'Woodlands University - Records Management System - Students'
 		];
 	}
 }

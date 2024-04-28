@@ -29,20 +29,16 @@ else {
 	$page = $controllers[$controllerName]->$action();
 }
 
-$allowedActions = ['login', 'students', 'home'];
+$allowedActions = ['students', 'home'];
 
 if (isset($controllerName) && in_array($action, $allowedActions))
 {
-	// All pages share an identical <head>
-	echo loadTemplate("../templates/head.html.php", [
-		'title' => $page['title']
-	]);
-
-	echo loadTemplate("../templates/$action.html.php", $page);
-
-	#if (isset($controllerName) && $action === 'login') {
-	#	echo loadTemplate("../templates/login.html.php", []);
-	#} else if (isset($controllerName) && $action == 'students') {
-	#	echo loadTemplate("../templates/students.html.php", []);
-	#}
+	$page['templateName'] = $action;
+	echo loadTemplate("../templates/layout.html.php", $page);
+}
+else if (isset($controllerName) && $action == 'login')
+{
+	// Login page has different layout to RMS interface
+	echo loadTemplate("../templates/head.html.php", $page);
+	echo loadTemplate("../templates/login.html.php", $page);
 }

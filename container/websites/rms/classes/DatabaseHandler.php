@@ -14,10 +14,8 @@ class DatabaseHandler
 
 	public function authenticate_staff($username, $password)
 	{
-		// Returns array [$was_auth_successful, $authenticated_user_id]
+		// Returns array [$was_auth_successful, $authenticated_user_id, $last_login_datetime]
 		
-		$returnArr = [];
-
 		$sql = "SELECT * FROM staff WHERE staff_email = :value";
 		$stmt = $this->pdo->prepare($sql);
 
@@ -29,9 +27,16 @@ class DatabaseHandler
 			return [false, -1];
 		}
 
+		// update date
+		$sql = "UPDATE staff SET staff_lastlogged = NOW() WHERE staff_id = :id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute(['id' => $record['staff_id']]);
+
 		return [
-			password_verify($password, $record['staff_password']),
-			$record['staff_id']
+			'auth_success' => password_verify($password, $record['staff_password']),
+			'staff_id' => $record['staff_id'],
+			'lastlogged' => $record['staff_lastlogged'],
+			'auth_name' => ucwords(strtolower($record['staff_forename'] . ' ' . $record['staff_surname']))
 		];
 	}
 }
