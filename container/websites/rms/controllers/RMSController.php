@@ -50,7 +50,8 @@ class RMSController
 		}
 
 		return [
-			'title' => 'Woodlands University - Records Management System - Students'
+			'title' => 'Woodlands University - Records Management System - Students',
+			'studentTable' => $this->db->get_all('students')
 		];
 	}
 }

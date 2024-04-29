@@ -16,7 +16,7 @@ CREATE TABLE boundaries (
 CREATE TABLE staff (
 	staff_id			INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
 	staff_forename		VARCHAR(255),
-	staff_middlenames	VARCHAR(255),
+	staff_middle_names	VARCHAR(255),
 	staff_surname		VARCHAR(255),
 	staff_role_cl		BOOLEAN,
 	staff_role_ml		BOOLEAN,
@@ -67,7 +67,7 @@ CREATE TABLE course_modules (
 CREATE TABLE students (
 	student_id						INTEGER(8) PRIMARY KEY,
 	student_forename				VARCHAR(255),
-	student_middlenames				VARCHAR(255),
+	student_middle_names			VARCHAR(255),
 	student_surname					VARCHAR(255),
 	student_term_address			VARCHAR(255),
 	student_nonterm_address			VARCHAR(255),

@@ -6,27 +6,26 @@
                         <div class="col-md-12">
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th>Column 1</th>
-                                        <th>Column 2</th>
-                                        <th>Column 3</th>
-                                        <th>Column 4</th>
-                                        <th>Column 5</th>
+									<tr>
+									<?php
+									foreach (array_keys($studentTable[0]) as $field) { ?>
+										<th><?=ucwords(str_replace('_',' ',$field));?></th>
+									<?php } ?>
 
 
                                         <!-- Add more columns here -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Data 1</td>
-                                        <td>Data 2</td>
-                                        <td>Data 3</td>
-                                        <td>Data 4</td>
-                                        <td>Data 5</td>
-                                        <!-- Add more cells here -->
-                                    </tr>
-                                    <!-- Repeat this row 9 more times for a 10 x 5 table -->
+									<?php
+										foreach ($studentTable as $student) { ?>
+											<tr>
+											<?php
+											foreach ($student as $value) { ?>
+												<td><?=$value;?></td>
+											<?php } ?>
+											</tr>
+										<?php } ?>
                                 </tbody>
                             </table>
                         </div>

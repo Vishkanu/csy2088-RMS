@@ -39,6 +39,16 @@ class DatabaseHandler
 			'auth_name' => ucwords(strtolower($record['staff_forename'] . ' ' . $record['staff_surname']))
 		];
 	}
+
+	// fetches all records from a given table, removing numerical keys
+	public function get_all($table)
+	{
+		$sql = "SELECT * FROM $table";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute();
+
+		return $stmt->fetchAll($mode = 2);
+	}
 }
 
 
