@@ -21,8 +21,8 @@
   }
   
   .btn-purple {
-    background-color: #7C6D8A; /* Adjust color as needed */
-    border-color: #7C6D8A; /* Adjust border color as needed */
+    background-color: #81007F; /* Adjust color as needed */
+    border-color: #81007F; /* Adjust border color as needed */
   }
   
   .btn-purple:hover {
@@ -99,8 +99,12 @@ body {
 }
 
 .bottom-bar {
-  background-color: white;
+  background-color: #e9ecef;
   padding: 10px;
+}
+
+.btn-pink{
+  background-color: #0000FE;
 }
 
 .table th, .table td {
