@@ -38,6 +38,7 @@ services:
             MYSQL_ROOT_PASSWORD: 'v.je'
             MYSQL_USER: 'v.je'
             MYSQL_PASSWORD: 'v.je'
+            TZ: 'Europe/London'
         volumes:
             - mysqldata:/var/lib/mysql
             - certs:/ssl
