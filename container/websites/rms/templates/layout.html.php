@@ -19,7 +19,7 @@ require '../templates/head.html.php';
                 </div>
 				<h5>Logged in as: <?=$_SESSION['auth_name'];?> (<?=$_SESSION['auth_id'];?>)</h5>
 				<p>Last logged in: <?=$_SESSION['lastlogged'];?></p>
-                <a class="link-user" href="">Logout</a>
+                <a class="link-user" href="/rms/logout">Logout</a>
                 <a class="link-user" href="">Manage User</a>
             </div>
         </div>

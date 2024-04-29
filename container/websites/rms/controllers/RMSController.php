@@ -37,8 +37,18 @@ class RMSController
 		return $returnArr;
 	}
 
+	public function logout()
+	{
+		session_destroy();
+		header('Location: /rms/login');
+	}
+
 	public function students()
 	{
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		}
+
 		return [
 			'title' => 'Woodlands University - Records Management System - Students'
 		];
