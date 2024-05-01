@@ -22,7 +22,7 @@ class RMSController
 		}
 		else if (isset($_POST['username']) && isset($_POST['password'])) {
 			$auth = $this->db->authenticate_staff($_POST['username'], $_POST['password'], 'staff');
-			if ($auth['auth_success'] === true) {
+			if (isset($auth['auth_success']) && $auth['auth_success'] === true) {
 				// auth success!
 				$_SESSION['auth_id'] = $auth['staff_id'];
 				$_SESSION['lastlogged'] = $auth['lastlogged'];

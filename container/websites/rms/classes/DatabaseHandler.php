@@ -47,7 +47,7 @@ class DatabaseHandler
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute();
 
-		return $stmt->fetchAll($mode = 2);
+		return $stmt->fetchAll($mode = \PDO::FETCH_ASSOC);
 	}
 }
 
