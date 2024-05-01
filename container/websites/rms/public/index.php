@@ -16,13 +16,9 @@ $controllers = [
 $route = ltrim(explode('?', $_SERVER['REQUEST_URI'])[0], '/');
 
 // use route to determine correct controller
-if ($route == '') {
+if ( in_array($route, ['', 'rms', 'rms/']) ) {
 	// only one controller currently - default to it
 	header('Location: /rms/login');
-
-	//$route = 'rms/login';
-	//list($controllerName, $action) = explode('/', $route);
-	//$page = $controllers[$controllerName]->$action();
 }
 else {
 	list($controllerName, $action) = explode('/', $route);
