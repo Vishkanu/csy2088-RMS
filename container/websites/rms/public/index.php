@@ -25,7 +25,7 @@ else {
 	$page = $controllers[$controllerName]->$action();
 }
 
-$allowedActions = ['students', 'home'];
+$allowedActions = ['students', 'home', 'staff'];
 
 if (isset($controllerName) && in_array($action, $allowedActions))
 {

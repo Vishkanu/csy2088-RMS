@@ -51,7 +51,21 @@ class RMSController
 
 		return [
 			'title' => 'Woodlands University - Records Management System - Students',
-			'studentTable' => $this->db->get_all('students')
+			'currentPage' => 'page_students',
+			'dbTable' => $this->db->get_all('students')
+		];
+	}
+
+	public function staff()
+	{
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Staff',
+			'currentPage' => 'page_staff',
+			'dbTable' => $this->db->get_all('staff')
 		];
 	}
 }

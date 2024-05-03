@@ -1,5 +1,17 @@
 <?php
 require '../templates/head.html.php';
+
+// Logic to display current page in navbar properly
+$navArray = [
+	'page_home' => '',
+	'page_students' => '',
+	'page_attendance' => '',
+	'page_assignments' => '',
+	'page_staff' => '',
+	'page_enrolment' => ''
+];
+$navArray[$currentPage] = 'btn-selected';
+extract($navArray);
 ?>
 
 <body>
@@ -35,22 +47,22 @@ require '../templates/head.html.php';
                 </div>
                 <ul class="nav flex-column flex-grow-1">
                     <li class="nav-item">
-                        <a href="home" class=" btn btn-dark btn-lg btn-block py-4">Dashboard</a>
+                        <a href="home" class="<?=$page_home;?> btn btn-dark btn-lg btn-block py-4">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="students" class="btn-selected btn btn-dark btn-lg btn-block py-4">Students</a>
+					<a href="students" class="<?=$page_students;?> btn btn-dark btn-lg btn-block py-4">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a href="attendance" class="btn btn-dark btn-lg btn-block py-4">Attendance</a>
+                        <a href="attendance" class="<?=$page_attendance;?> btn btn-dark btn-lg btn-block py-4">Attendance</a>
                     </li>
                     <li class="nav-item">
-                        <a href="assignments" class="btn btn-dark btn-lg btn-block py-4">Assignments</a>
+                        <a href="assignments" class="<?=$page_assignments;?> btn btn-dark btn-lg btn-block py-4">Assignments</a>
                     </li>
                     <li class="nav-item">
-                        <a href="staff" class="btn btn-dark btn-lg btn-block py-4">Tutors</a>
+                        <a href="staff" class="<?=$page_staff;?> btn btn-dark btn-lg btn-block py-4">Staff</a>
                     </li>
                     <li class="nav-item">
-                        <a href="enrolment" class="btn btn-dark btn-lg btn-block py-4">Enrolment</a>
+                        <a href="enrolment" class="<?=$page_enrolment;?> btn btn-dark btn-lg btn-block py-4">Enrolment</a>
                     </li>
                 </ul>
 			</div>
