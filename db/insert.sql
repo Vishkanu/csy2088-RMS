@@ -25,3 +25,72 @@ VALUES ('5', 'English Language Studies');
 INSERT INTO `csy2088_as1`.`students` 
 VALUES('22400001', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
 
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400002', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400003', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400004', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400005', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400006', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400007', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400008', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400009', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400010', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400011', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400012', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400013', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400014', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400015', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400016', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400017', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400018', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400019', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400020', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400021', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400022', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400023', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+
+INSERT INTO `csy2088_as1`.`students` 
+VALUES('22400024', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
+

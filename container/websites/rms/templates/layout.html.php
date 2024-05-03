@@ -35,22 +35,22 @@ require '../templates/head.html.php';
                 </div>
                 <ul class="nav flex-column flex-grow-1">
                     <li class="nav-item">
-                        <a href="rms.html" class=" btn btn-dark btn-lg btn-block py-4">Dashboard</a>
+                        <a href="home" class=" btn btn-dark btn-lg btn-block py-4">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="students.html" class="btn-selected btn btn-dark btn-lg btn-block py-4">Students</a>
+                        <a href="students" class="btn-selected btn btn-dark btn-lg btn-block py-4">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="btn btn-dark btn-lg btn-block py-4">Attendance</a>
+                        <a href="attendance" class="btn btn-dark btn-lg btn-block py-4">Attendance</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="btn btn-dark btn-lg btn-block py-4">Assignments</a>
+                        <a href="assignments" class="btn btn-dark btn-lg btn-block py-4">Assignments</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="btn btn-dark btn-lg btn-block py-4">Tutors</a>
+                        <a href="staff" class="btn btn-dark btn-lg btn-block py-4">Tutors</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="btn btn-dark btn-lg btn-block py-4">Enrollment</a>
+                        <a href="enrolment" class="btn btn-dark btn-lg btn-block py-4">Enrolment</a>
                     </li>
                 </ul>
 			</div>
