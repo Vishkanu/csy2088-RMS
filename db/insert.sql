@@ -23,6 +23,5 @@ VALUES ('5', 'English Language Studies');
 
 --students table:
 INSERT INTO `csy2088_as1`.`students` 
-VALUES('22400001', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '075679012','johndoe@gmail.com', 'Currently Studying', '1','A A B');
-
+VALUES('22400001', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', 'L', NULL, 1, 'A A B');
 
