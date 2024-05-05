@@ -24,6 +24,7 @@
 											foreach ($row as $value) { ?>
 												<td><?=$value;?></td>
 											<?php } ?>
+											<td><a href='edit?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>EDIT</a></td>
 											</tr>
 										<?php } ?>
                                 </tbody>

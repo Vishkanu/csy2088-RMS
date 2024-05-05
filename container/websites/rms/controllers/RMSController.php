@@ -43,6 +43,18 @@ class RMSController
 		header('Location: /rms/login');
 	}
 
+	public function home()
+	{
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Dashboard',
+			'currentPage' => 'page_home'
+		];
+	}
+
 	public function students()
 	{
 		if (!isset($_SESSION['auth_id'])) {
@@ -52,6 +64,8 @@ class RMSController
 		return [
 			'title' => 'Woodlands University - Records Management System - Students',
 			'currentPage' => 'page_students',
+			'primaryKey' => 'student_id',
+			'tableName' => 'students',
 			'dbTable' => $this->db->get_all('students')
 		];
 	}
@@ -62,10 +76,20 @@ class RMSController
 			header('Location: /rms/login');
 		}
 
+		// remove staff_password from the table
+		$dbTable = $this->db->get_all('staff');
+		$newTable = [];
+		foreach ($dbTable as $row) {
+			unset($row['staff_password']);
+			array_push($newTable, $row);
+		}
+
 		return [
 			'title' => 'Woodlands University - Records Management System - Staff',
 			'currentPage' => 'page_staff',
-			'dbTable' => $this->db->get_all('staff')
+			'primaryKey' => 'staff_id',
+			'tableName' => 'staff',
+			'dbTable' => $newTable
 		];
 	}
 }
