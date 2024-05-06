@@ -92,6 +92,36 @@ class RMSController
 			'dbTable' => $newTable
 		];
 	}
+
+	public function edit()
+	{
+		// redirects - need to be logged in; need appropriate $_GET vars set
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		} else if (!isset($_GET['table']) || !isset($_GET['id'])) {
+			header('Location: /rms/home');
+		}
+
+		// record update logic
+		if (isset($_POST['submit'])) {
+			unset($_POST['submit']);
+			$this->db->updateRecord($_GET['table'], $_GET['id'], $_POST);
+			unset($_POST);
+		}
+
+		// password update logic
+		if (isset($_POST['submit2'])) {
+			$this->db->updatePassword($_GET['table'], $_GET['id'], $_POST['change_password']);
+			unset($_POST);
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Edit Record',
+			'currentPage' => 'page_edit',
+			'userRecord' => $this->db->get($_GET['table'], $_GET['id'])
+		];
+
+	}
 }
 
 
