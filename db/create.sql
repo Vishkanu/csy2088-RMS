@@ -65,7 +65,7 @@ CREATE TABLE course_modules (
 -- PL/SQL is cringe, so we're managing ID generation in PHP
 -- ## end student_id format ## --
 CREATE TABLE students (
-	student_id						INTEGER(8) PRIMARY KEY,
+	student_id						INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
 	student_forename				VARCHAR(255),
 	student_middle_names			VARCHAR(255),
 	student_surname					VARCHAR(255),
@@ -73,6 +73,7 @@ CREATE TABLE students (
 	student_nonterm_address			VARCHAR(255),
 	student_telephone				VARCHAR(255),
 	student_email					VARCHAR(255),
+	student_password				VARCHAR(255),
 	student_status					CHAR(1),
 	student_status_reason			VARCHAR(255),
 	student_course					INTEGER(8),
