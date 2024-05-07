@@ -61,11 +61,21 @@ class RMSController
 			header('Location: /rms/login');
 		}
 
-		// remove unwanted fields from the table
+		// remove unwanted fields from the table + substitute FKs for strings
 		$dbTable = $this->db->get_all('students');
 		$newTable = [];
 		foreach ($dbTable as $row) {
 			unset($row['student_password']);
+
+			// catch empty array
+			$course = $this->db->get(['course_name'], 'courses', 'course_id', $row['student_course']);
+			if (empty($course)) {
+				$course = '';
+			} else {
+				$course = $course[0]['course_name'];
+			}
+
+			$row['student_course'] = $course;
 			array_push($newTable, $row);
 		}
 
@@ -126,7 +136,7 @@ class RMSController
 		return [
 			'title' => 'Woodlands University - Records Management System - Edit Record',
 			'currentPage' => 'page_edit',
-			'userRecord' => $this->db->get($_GET['table'], $_GET['id'])
+			'userRecord' => $this->db->editGet($_GET['table'], $_GET['id'])
 		];
 
 	}

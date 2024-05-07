@@ -57,8 +57,19 @@ class DatabaseHandler
 		return $stmt->fetchAll($mode = \PDO::FETCH_ASSOC);
 	}
 
-	// fetches record from given table with given PK
-	public function get($table, $value)
+	// generic "SELECT $fields from $table WHERE $key = $value"
+	public function get($fields, $table, $key, $value)
+	{
+		$fieldsString = implode(', ', $fields);
+		$sql = "SELECT $fieldsString FROM $table WHERE $key = :value";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute(['value' => $value]);
+
+		return $stmt->fetchAll();
+	}
+
+	// fetches records for edit pages
+	public function editGet($table, $value)
 	{
 		// password hashes should not be returned
 		$wantedFields = [
