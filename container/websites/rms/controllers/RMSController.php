@@ -120,23 +120,46 @@ class RMSController
 			header('Location: /rms/home');
 		}
 
+		// fields wanted from the db
+		$wantedFields = [
+			'students' => [
+				'student_id', 'student_forename', 'student_middle_names',
+				'student_surname', 'student_term_address', 'student_nonterm_address',
+				'student_telephone', 'student_email', 'student_status',
+				'student_status_reason', 'student_course', 'student_entry_qualifications'
+			],
+			'staff' => [
+				'staff_id', 'staff_forename', 'staff_middle_names',
+				'staff_surname', 'staff_role_cl', 'staff_role_ml',
+				'staff_role_pt', 'staff_address', 'staff_telephone',
+				'staff_email', 'staff_status', 'staff_status_reason',
+				'staff_specialism'
+			]
+		];
+
+		// name of the primary key column for given tables
+		$primaryKeys = [
+			'students' => 'student_id',
+			'staff' => 'staff_id'
+		];
+
 		// record update logic
 		if (isset($_POST['submit'])) {
 			unset($_POST['submit']);
-			$this->db->updateRecord($_GET['table'], $_GET['id'], $_POST);
+			$this->db->updateRecord($_GET['table'], $_POST, $primaryKeys[$_GET['table']], $_GET['id']);
 			unset($_POST);
 		}
 
 		// password update logic
 		if (isset($_POST['submit2'])) {
-			$this->db->updatePassword($_GET['table'], $_GET['id'], $_POST['change_password']);
+			$this->db->updatePassword($_GET['table'], $_POST['change_password'], $primaryKeys[$_GET['table']], $_GET['id']);
 			unset($_POST);
 		}
 
 		return [
 			'title' => 'Woodlands University - Records Management System - Edit Record',
 			'currentPage' => 'page_edit',
-			'userRecord' => $this->db->editGet($_GET['table'], $_GET['id'])
+			'userRecord' => $this->db->get($wantedFields[$_GET['table']], $_GET['table'], $primaryKeys[$_GET['table']], $_GET['id'])[0]
 		];
 
 	}
