@@ -9,6 +9,7 @@ foreach (array_keys($userRecord) as $key) {
 ?>
 
 <div class="col-md-10 py-4">
+<h1>Edit Record</h1>
 <?php
 // TODO: PRESERVE $_GET VARIABLES ON FORM SUBMISSION
 ?>
