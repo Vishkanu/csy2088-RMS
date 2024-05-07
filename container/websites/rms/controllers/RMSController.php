@@ -61,12 +61,20 @@ class RMSController
 			header('Location: /rms/login');
 		}
 
+		// remove unwanted fields from the table
+		$dbTable = $this->db->get_all('students');
+		$newTable = [];
+		foreach ($dbTable as $row) {
+			unset($row['student_password']);
+			array_push($newTable, $row);
+		}
+
 		return [
 			'title' => 'Woodlands University - Records Management System - Students',
 			'currentPage' => 'page_students',
 			'primaryKey' => 'student_id',
 			'tableName' => 'students',
-			'dbTable' => $this->db->get_all('students')
+			'dbTable' => $newTable
 		];
 	}
 
@@ -76,7 +84,7 @@ class RMSController
 			header('Location: /rms/login');
 		}
 
-		// remove staff_password from the table
+		// remove unwanted fields from the table
 		$dbTable = $this->db->get_all('staff');
 		$newTable = [];
 		foreach ($dbTable as $row) {
