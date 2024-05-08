@@ -34,7 +34,7 @@ class RMSController
 					'staff_email', 'staff_status', 'staff_status_reason',
 					'staff_specialism'
 				],
-				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', ''],
+				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', '', ''],
 				'hasPassword' => true,
 				'primaryKey' => 'staff_id'
 			],
