@@ -33,7 +33,7 @@ CREATE TABLE staff (
 
 -- FKs: module_leader
 CREATE TABLE modules (
-	module_id		INTEGER(4) PRIMARY KEY,
+	module_id		CHAR(5) PRIMARY KEY,
 	module_year		INTEGER(1) NOT NULL,
 	module_points	INTEGER(2) NOT NULL,
 	module_title	VARCHAR(255) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE courses (
 -- courses <=> modules are a many-many relationship. make a junction table
 CREATE TABLE course_modules (
 	course_id		INTEGER(8),
-	module_id		INTEGER(4),
+	module_id		CHAR(5),
 	PRIMARY KEY (course_id, module_id)
 );
 
@@ -83,20 +83,22 @@ CREATE TABLE students (
 -- FKs: module_id, lecture_room
 -- lecture_duration: length of lecture in minutes
 CREATE TABLE lectures (
-	lecture_id			INTEGER(8) PRIMARY KEY,
-	module_id			INTEGER(4),
+	lecture_id			INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
+	module_id			CHAR(5),
 	module_week			INTEGER(2),
 	lecture_room		VARCHAR(4),
 	lecture_datetime	DATETIME,
-	lecture_duration	INTEGER(4)
+	lecture_duration	INTEGER(4),
+	UNIQUE (lecture_room, lecture_datetime)
 );
 
 -- FKs: student_id, lecture_id
 CREATE TABLE attendance (
+	attendance_id		INTEGER(8),
 	student_id			INTEGER(8),
 	lecture_id			INTEGER(8),
 	attendance_value	CHAR(1),
-	PRIMARY KEY (student_id, lecture_id)
+	UNIQUE (student_id, lecture_id)
 );
 
 
