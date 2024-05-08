@@ -1,4 +1,10 @@
 <?php
+// $userRecord - database record retrieved using data in $_GET
+// $fieldNames - array to contain strings for each column in $userRecord
+// $inputOpts - additional options for input fields e.g. some will be readonly for certain tables
+// $hasPassword - show password reset form if applicable for the table
+
+
 $fieldNames = [];
 
 foreach (array_keys($userRecord) as $key) {
@@ -14,22 +20,28 @@ foreach (array_keys($userRecord) as $key) {
 // TODO: PRESERVE $_GET VARIABLES ON FORM SUBMISSION
 ?>
 <form method="POST" action="edit?<?=$_SERVER['QUERY_STRING'];?>">
-	<label for="<?=$fieldNames[0];?>"><?=ucwords(str_replace('_',' ',$fieldNames[0]));?></label><br>
-	<input type="text" id=<?=$fieldNames[0];?> name=<?=$fieldNames[0];?> value="<?=$userRecord[0];?>" readonly><br> <?php
-for ($i = 1; $i < sizeof($fieldNames); $i++) { ?>
+<?php
+for ($i = 0; $i < sizeof($fieldNames); $i++) { ?>
 	<label for="<?=$fieldNames[$i];?>"><?=ucwords(str_replace('_',' ',$fieldNames[$i]));?></label><br>
-	<input type="text" id=<?=$fieldNames[$i];?> name=<?=$fieldNames[$i];?> value="<?=$userRecord[$i];?>"><br>
+	<input type="text" id=<?=$fieldNames[$i];?> name=<?=$fieldNames[$i];?> value="<?=$userRecord[$i];?>" <?=$inputOpts[$i];?> ><br>
 <?php
 }
 ?>
 <input type="submit" name="submit">
+<button type="button" onclick="javascript:history.back()">Go Back</button>
 </form>
 
+<?php
+if (isset($hasPassword) && $hasPassword == true) {
+?>
 <form method="POST" action="edit?<?=$_SERVER['QUERY_STRING'];?>">
 	<label for="change_password">Password Reset:</label><br>
 	<input type="text" id="change_password" name="change_password"><br>
 <input type="submit" name="submit2">
 </form>
+<?php
+}
+?>
 
 
 </div>

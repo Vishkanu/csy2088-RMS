@@ -5,10 +5,50 @@ class RMSController
 {
 	// No thoughts, class empty...
 	private $db;
+	private $editData;
 
 	public function __construct($db)
 	{
 		$this->db = $db;
+
+		$this->editData = [
+			'students' => [
+				// fields wanted from the db
+				'wantedFields' => [
+					'student_id', 'student_forename', 'student_middle_names',
+					'student_surname', 'student_term_address', 'student_nonterm_address',
+					'student_telephone', 'student_email', 'student_status',
+					'student_status_reason', 'student_course', 'student_entry_qualifications'
+				],
+				// options for input fields on edit forms (some are readonly)
+				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', ''],
+				// does this table need the password reset form on the edit page?
+				'hasPassword' => true,
+				'primaryKey' => 'student_id'
+			],
+			'staff' => [
+				'wantedFields' => [
+					'staff_id', 'staff_forename', 'staff_middle_names',
+					'staff_surname', 'staff_role_cl', 'staff_role_ml',
+					'staff_role_pt', 'staff_address', 'staff_telephone',
+					'staff_email', 'staff_status', 'staff_status_reason',
+					'staff_specialism'
+				],
+				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', ''],
+				'hasPassword' => true,
+				'primaryKey' => 'staff_id'
+			],
+			'attendance' => [
+				'wantedFields' => [
+					'attendance_id', 'student_id', 'lecture_id',
+					'attendance_value'
+				],
+				'inputOpts' => ['readonly', 'readonly', 'readonly', ''],
+				'hasPassword' => false,
+				// we're searching by FK lecture_id here, instead of PK
+				'primaryKey' => 'attendance_id'
+			]
+		];
 	}
 
 	public function login()
@@ -120,48 +160,74 @@ class RMSController
 			header('Location: /rms/home');
 		}
 
-		// fields wanted from the db
-		$wantedFields = [
-			'students' => [
-				'student_id', 'student_forename', 'student_middle_names',
-				'student_surname', 'student_term_address', 'student_nonterm_address',
-				'student_telephone', 'student_email', 'student_status',
-				'student_status_reason', 'student_course', 'student_entry_qualifications'
-			],
-			'staff' => [
-				'staff_id', 'staff_forename', 'staff_middle_names',
-				'staff_surname', 'staff_role_cl', 'staff_role_ml',
-				'staff_role_pt', 'staff_address', 'staff_telephone',
-				'staff_email', 'staff_status', 'staff_status_reason',
-				'staff_specialism'
-			]
-		];
-
-		// name of the primary key column for given tables
-		$primaryKeys = [
-			'students' => 'student_id',
-			'staff' => 'staff_id'
-		];
-
 		// record update logic
 		if (isset($_POST['submit'])) {
 			unset($_POST['submit']);
-			$this->db->updateRecord($_GET['table'], $_POST, $primaryKeys[$_GET['table']], $_GET['id']);
+			$this->db->updateRecord($_GET['table'], $_POST, $this->editData[$_GET['table']]['primaryKey'], $_GET['id']);
 			unset($_POST);
 		}
 
 		// password update logic
 		if (isset($_POST['submit2'])) {
-			$this->db->updatePassword($_GET['table'], $_POST['change_password'], $primaryKeys[$_GET['table']], $_GET['id']);
+			$this->db->updatePassword($_GET['table'], $_POST['change_password'], $this->editData[$_GET['table']]['primaryKey'], $_GET['id']);
 			unset($_POST);
 		}
 
 		return [
 			'title' => 'Woodlands University - Records Management System - Edit Record',
 			'currentPage' => 'page_edit',
-			'userRecord' => $this->db->get($wantedFields[$_GET['table']], $_GET['table'], $primaryKeys[$_GET['table']], $_GET['id'])[0]
+			'inputOpts' => $this->editData[$_GET['table']]['inputOpts'],
+			'hasPassword' => $this->editData[$_GET['table']]['hasPassword'],
+			'userRecord' => $this->db->get($this->editData[$_GET['table']]['wantedFields'], $_GET['table'], $this->editData[$_GET['table']]['primaryKey'], $_GET['id'])[0]
 		];
+	}
 
+	// annoyingly named - attendance page DOES NOT call attendance table. It calls lectures table
+	public function attendance()
+	{
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Attendance',
+			'currentPage' => 'page_attendance',
+			'tableName' => 'attendance',
+			'primaryKey' => 'lecture_id',
+			'dbTable' => $this->db->get_all('lectures')
+		];
+	}
+
+	public function attendance_register()
+	{
+		$lectureRegister = $this->db->get($this->editData['attendance']['wantedFields'], 'attendance', 'lecture_id', $_GET['lecture_id'], \PDO::FETCH_ASSOC);
+		$newRegister = [];
+
+		foreach ($lectureRegister as $row) {
+			// remove unwanted data
+			unset($row['lecture_id']);
+
+			// use student_id to fetch and append name of student to the results
+			$name = implode(' ', $this->db->get(['student_forename', 'student_surname'], 'students', 'student_id', $row['student_id'], \PDO::FETCH_ASSOC)[0]);
+
+			$newRow = [
+				'attendance_id' => $row['attendance_id'],
+				'student_id' => $row['student_id'],
+				'student_name' => $name,
+				'attendance_value' => $row['attendance_value']
+			];
+
+
+			array_push($newRegister, $newRow);
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Attendance Register',
+			'currentPage' => 'page_attendance_register',
+			'tableName' => 'attendance',
+			'primaryKey' => 'attendance_id',
+			'dbTable' => $newRegister
+		];
 	}
 }
 

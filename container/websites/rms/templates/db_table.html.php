@@ -23,8 +23,14 @@
 											<?php
 											foreach ($row as $value) { ?>
 												<td><?=$value;?></td>
-											<?php } ?>
+											<?php } 
+											if ($currentPage == 'page_attendance') { ?>
+											<!-- lectures PK here is used to search for FK in attendance table -->
+											<td><a href='attendance_register?lecture_id=<?=$row[$primaryKey];?>'>GO</a></td>
+											<?php } else { ?>
 											<td><a href='edit?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>EDIT</a></td>
+											<?php } ?>
+						
 											</tr>
 										<?php } ?>
                                 </tbody>

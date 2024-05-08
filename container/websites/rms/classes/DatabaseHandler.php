@@ -51,14 +51,14 @@ class DatabaseHandler
 	}
 
 	// generic "SELECT $fields from $table WHERE $key = $value"
-	public function get($fields, $table, $key, $value)
+	public function get($fields, $table, $key, $value, $fetchMode=\PDO::FETCH_BOTH)
 	{
 		$fieldsString = implode(', ', $fields);
 		$sql = "SELECT $fieldsString FROM $table WHERE $key = :value";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute(['value' => $value]);
 
-		return $stmt->fetchAll();
+		return $stmt->fetchAll($mode = $fetchMode);
 	}
 
 	public function updateRecord($table, $values, $pk, $id)
