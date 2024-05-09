@@ -47,6 +47,15 @@ class RMSController
 				'hasPassword' => false,
 				// we're searching by FK lecture_id here, instead of PK
 				'primaryKey' => 'attendance_id'
+			],
+			'grades' => [
+				'wantedFields' => [
+					'grade_id', 'assignment_id', 'student_id',
+					'grade_value'
+				],
+				'inputOpts' => ['readonly', 'readonly', 'readonly', ''],
+				'hasPassword' => false,
+				'primaryKey' => 'grade_id'
 			]
 		];
 	}
@@ -227,6 +236,51 @@ class RMSController
 			'tableName' => 'attendance',
 			'primaryKey' => 'attendance_id',
 			'dbTable' => $newRegister
+		];
+	}
+
+	public function assignments()
+	{
+		return [
+			'title' => 'Woodlands University - Records Management System - Assignments',
+			'currentPage' => 'page_assignments',
+			'tableName' => 'assignments',
+			'primaryKey' => 'assignment_id',
+			'dbTable' => $this->db->get_all('assignments')
+		];
+	}
+
+	public function grades()
+	{
+		// redirects - need to be logged in; need appropriate $_GET vars set
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		} else if (!isset($_GET['assignment_id'])) {
+			header('Location: /rms/home');
+		}
+
+		// SELECT grades that are from the desired assignment
+		$dbTable = $this->db->get(['grade_id', 'student_id', 'grade_value'], 'grades', 'assignment_id', $_GET['assignment_id']);
+		$newTable = [];
+
+		foreach ($dbTable as $row) {
+			// use student_id to fetch and append name of student to the results
+			$name = implode(' ', $this->db->get(['student_forename', 'student_surname'], 'students', 'student_id', $row['student_id'], \PDO::FETCH_ASSOC)[0]);
+			$newRow = [
+				'grade_id' => $row['grade_id'],
+				'student_id' => $row['student_id'],
+				'student_name' => $name,
+				'grade_value' => $row['grade_value']
+			];
+			array_push($newTable, $newRow);
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Assignment Grades',
+			'currentPage' => 'page_grades',
+			'tableName' => 'grades',
+			'primaryKey' => 'grade_id',
+			'dbTable' => $newTable
 		];
 	}
 }
