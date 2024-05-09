@@ -107,3 +107,14 @@ VALUES
 (30000004, 22400002, 10000004, 'O'),
 (30000005, 22400002, 10000001, 'O');
 
+-- assignments table
+INSERT INTO assignments
+VALUES
+(40000001, 'AS1 - Intro Project', 'C1001'),
+(40000002, 'AS2 - Second Project', 'C1001');
+
+--- grades table
+INSERT INTO grades
+VALUES
+(50000001, 40000001, 22400001, 'A+'),
+(50000002, 40000002, 22400001, 'B+');

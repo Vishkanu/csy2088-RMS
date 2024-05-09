@@ -94,14 +94,27 @@ CREATE TABLE lectures (
 
 -- FKs: student_id, lecture_id
 CREATE TABLE attendance (
-	attendance_id		INTEGER(8),
+	attendance_id		INTEGER(8) PRIMARY KEY,
 	student_id			INTEGER(8),
 	lecture_id			INTEGER(8),
 	attendance_value	CHAR(1),
 	UNIQUE (student_id, lecture_id)
 );
 
+-- FKs: assignment_module
+CREATE TABLE assignments (
+	assignment_id		INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
+	assignment_name		VARCHAR(255),
+	assignment_module	CHAR(5)
+);
 
+-- FKs: assignment_id, student_id
+CREATE TABLE grades (
+	grade_id		INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
+	assignment_id	INTEGER(8),
+	student_id		INTEGER(8),
+	grade_value		CHAR(3)
+);
 
 
 -- ALTERS
@@ -148,4 +161,18 @@ ADD CONSTRAINT fk_att_lectures
 FOREIGN KEY (lecture_id)
 REFERENCES lectures(lecture_id);
 
+ALTER TABLE assignments 
+ADD CONSTRAINT fk_ass_modules
+FOREIGN KEY (assignment_module)
+REFERENCES modules(module_id);
+
+ALTER TABLE grades
+ADD CONSTRAINT fk_gr_assignments
+FOREIGN KEY (assignment_id)
+REFERENCES assignments(assignment_id);
+
+ALTER TABLE grades
+ADD CONSTRAINT fk_gr_students
+FOREIGN KEY (student_id)
+REFERENCES students(student_id);
 

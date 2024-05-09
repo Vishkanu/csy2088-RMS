@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS grades;
+DROP TABLE IF EXISTS assignments;
 DROP TABLE IF EXISTS attendance;
 DROP TABLE IF EXISTS lectures;
 DROP TABLE IF EXISTS students;
