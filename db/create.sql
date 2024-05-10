@@ -55,7 +55,7 @@ CREATE TABLE course_modules (
 	PRIMARY KEY (course_id, module_id)
 );
 
--- FKs: student_course
+-- FKs: student_course, student_personal_tutor
 -- student_status: 'L' for live or 'D' for dormant
 -- student_status_reason: e.g. graduated, withdrawn, terminated
 -- ## student_id format ## --
@@ -77,7 +77,8 @@ CREATE TABLE students (
 	student_status					CHAR(1),
 	student_status_reason			VARCHAR(255),
 	student_course					INTEGER(8),
-	student_entry_qualifications	VARCHAR(255)
+	student_entry_qualifications	VARCHAR(255),
+	student_personal_tutor			INTEGER(8)
 );
 
 -- FKs: module_id, lecture_room
@@ -140,6 +141,11 @@ ALTER TABLE students
 ADD CONSTRAINT fk_stu_courses
 FOREIGN KEY (student_course)
 REFERENCES courses(course_id);
+
+ALTER TABLE students
+ADD CONSTRAINT fk_stu_staff
+FOREIGN KEY (student_personal_tutor)
+REFERENCES staff(staff_id);
 
 ALTER TABLE lectures
 ADD CONSTRAINT fk_lec_modules

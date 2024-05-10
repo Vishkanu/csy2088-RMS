@@ -1,6 +1,6 @@
 -- password for test user: 1234
-INSERT INTO staff (staff_forename, staff_surname, staff_email, staff_password, staff_address)
-VALUES ('JOHN', 'SMITH', 'JOHN@SMITH.COM', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', '64 ZOO LANE');
+INSERT INTO staff (staff_id, staff_forename, staff_surname, staff_role_pt, staff_email, staff_password, staff_address)
+VALUES (99100000, 'JOHN', 'SMITH', true, 'JOHN@SMITH.COM', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', '64 ZOO LANE');
 
 INSERT INTO students (student_id, student_forename, student_surname, student_email, student_status)
 VALUES (22400000, 'FOO', 'BAR', 'FOO@BAR.COM', 'L');
@@ -23,19 +23,19 @@ VALUES ('5', 'English Language Studies');
 
 -- students table:
 INSERT INTO `csy2088_as1`.`students` 
-VALUES('22400001', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B');
+VALUES('22400001', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B', 99100000);
 
 INSERT INTO `csy2088_as1`.`students` 
-VALUES('22400002', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B');
+VALUES('22400002', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B', 99100000);
 
 INSERT INTO `csy2088_as1`.`students` 
-VALUES('22400003', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B');
+VALUES('22400003', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B', 99100000);
 
 INSERT INTO `csy2088_as1`.`students` 
-VALUES('22400004', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B');
+VALUES('22400004', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B', 99100000);
 
 INSERT INTO `csy2088_as1`.`students` 
-VALUES('22400005', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B');
+VALUES('22400005', 'John', 'Long', 'Doe', '89 Grange Park', '90 Park Lane',  '07567901245','johndoe@gmail.com', '$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu', 'L', NULL, 1, 'A A B', 99100000);
 
 -- modules table
 INSERT INTO modules
