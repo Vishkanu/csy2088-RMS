@@ -10,7 +10,8 @@ class RMSController
 	public function __construct($db)
 	{
 		$this->db = $db;
-
+		
+		// WARNING: changes to database schema will likely require updates to this array!
 		$this->editData = [
 			'students' => [
 				// fields wanted from the db
@@ -18,7 +19,8 @@ class RMSController
 					'student_id', 'student_forename', 'student_middle_names',
 					'student_surname', 'student_term_address', 'student_nonterm_address',
 					'student_telephone', 'student_email', 'student_status',
-					'student_status_reason', 'student_course', 'student_entry_qualifications'
+					'student_status_reason', 'student_course', 'student_entry_qualifications',
+					'student_personal_tutor'
 				],
 				// options for input fields on edit forms (some are readonly)
 				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', ''],
@@ -56,6 +58,16 @@ class RMSController
 				'inputOpts' => ['readonly', 'readonly', 'readonly', ''],
 				'hasPassword' => false,
 				'primaryKey' => 'grade_id'
+			],
+			'modules' => [
+				'wantedFields' => [
+					'module_id', 'module_year', 'module_points',
+					'module_title', 'module_as1', 'module_as2',
+					'module_exam', 'module_leader'
+				],
+				'inputOpts' => ['readonly', '', '', '', '', '', '', ''],
+				'hasPassword' => false,
+				'primaryKey' => 'module_id'
 			]
 		];
 	}
@@ -298,6 +310,26 @@ class RMSController
 			'currentPage' => 'page_courses',
 			'tableName' => 'courses',
 			'primaryKey' => 'course_id',
+			'dbTable' => $dbTable
+		];
+	}
+
+	public function course_modules()
+	{
+		// redirects - need to be logged in; need appropriate $_GET vars set
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		} else if (!isset($_GET['course_id'])) {
+			header('Location: /rms/home');
+		}
+
+		$dbTable = $this->db->cm_get($_GET['course_id']);
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Course Modules',
+			'currentPage' => 'page_course_modules',
+			'tableName' => 'modules',
+			'primaryKey' => 'module_id',
 			'dbTable' => $dbTable
 		];
 

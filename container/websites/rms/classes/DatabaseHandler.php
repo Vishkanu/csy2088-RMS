@@ -61,11 +61,33 @@ class DatabaseHandler
 		return $stmt->fetchAll($mode = $fetchMode);
 	}
 
+	// version of get for course_modules - calling a nested query on modules table due to db design
+	public function cm_get($course_id, $fetchMode=\PDO::FETCH_ASSOC)
+	{
+		$sql = "SELECT * FROM modules WHERE module_id IN (SELECT module_id FROM course_modules WHERE course_id = $course_id)";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute();
+
+		return $stmt->fetchAll($mode = $fetchMode);
+	}
+
 	public function updateRecord($table, $values, $pk, $id)
 	{
 		$set = '';
+
+		// TODO: see if there is a more elegant solution than this string manipulation bodge
 		foreach ($values as $key => $value) {
-			$set = $set . "$key = '$value', ";
+			// don't place numeric values in quotes - SQL exception
+			if (is_numeric($value)) {
+				$set = $set . "$key = $value, ";
+			}
+			// make empty strings NULL, trying to set a numerical field to an empty string raises - you guessed it - an SQL exception
+			else if ($value == '') {
+				$set = $set . "$key = NULL, ";
+			}
+			else {
+				$set = $set . "$key = '$value', ";
+			}
 		}
 		$set = rtrim($set, ', ');
 
