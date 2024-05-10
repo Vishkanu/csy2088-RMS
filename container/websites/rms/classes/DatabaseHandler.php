@@ -77,13 +77,13 @@ class DatabaseHandler
 
 		// TODO: see if there is a more elegant solution than this string manipulation bodge
 		foreach ($values as $key => $value) {
-			// don't place numeric values in quotes - SQL exception
-			if (is_numeric($value)) {
-				$set = $set . "$key = $value, ";
-			}
 			// make empty strings NULL, trying to set a numerical field to an empty string raises - you guessed it - an SQL exception
-			else if ($value == '') {
+			if ($value == '' || $value == 0) {
 				$set = $set . "$key = NULL, ";
+			}
+			// don't place numeric values in quotes - SQL exception
+			else if (is_numeric($value)) {
+				$set = $set . "$key = $value, ";
 			}
 			else {
 				$set = $set . "$key = '$value', ";
