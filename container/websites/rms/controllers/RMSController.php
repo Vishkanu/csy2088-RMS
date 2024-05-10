@@ -314,6 +314,24 @@ class RMSController
 		];
 	}
 
+	public function modules()
+	{
+		// redirects - need to be logged in; need appropriate $_GET vars set
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		}
+
+		$dbTable = $this->db->get_all('modules');
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Modules',
+			'currentPage' => 'page_modules',
+			'tableName' => 'modules',
+			'primaryKey' => 'module_id',
+			'dbTable' => $dbTable
+		];
+	}
+
 	public function course_modules()
 	{
 		// redirects - need to be logged in; need appropriate $_GET vars set
