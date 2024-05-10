@@ -33,6 +33,10 @@
                                             ?>
                                                 <td><a href='grades?assignment_id=<?=$row[$primaryKey];?>'>GO</a></td>
                                             <?php
+                                            } else if ($currentPage == 'page_courses') {
+                                            ?>
+                                                <td><a href='course_modules?course_id=<?=$row[$primaryKey];?>'>GO</a></td>
+                                            <?php
                                             } else {
                                             ?>
                                                 <td><a href='edit?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>EDIT</a></td>
