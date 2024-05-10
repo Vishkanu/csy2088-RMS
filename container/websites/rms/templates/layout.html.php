@@ -10,7 +10,8 @@ $navArray = [
 	'page_staff' => '',
 	'page_enrolment' => '',
 	'page_courses' => '',
-	'page_modules' => ''
+	'page_modules' => '',
+	'page_personal_tutors' => ''
 ];
 $navArray[$currentPage] = 'btn-selected';
 extract($navArray);
@@ -61,10 +62,13 @@ extract($navArray);
 					<a href="modules" class="<?=$page_modules;?> btn btn-dark btn-lg btn-block py-4">Modules</a>
                     </li>
                     <li class="nav-item">
+                        <a href="assignments" class="<?=$page_assignments;?> btn btn-dark btn-lg btn-block py-4">Assignments</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="attendance" class="<?=$page_attendance;?> btn btn-dark btn-lg btn-block py-4">Attendance</a>
                     </li>
                     <li class="nav-item">
-                        <a href="assignments" class="<?=$page_assignments;?> btn btn-dark btn-lg btn-block py-4">Assignments</a>
+                        <a href="personal_tutors" class="<?=$page_personal_tutors;?> btn btn-dark btn-lg btn-block py-4">Personal Tutors</a>
                     </li>
                     <li class="nav-item">
                         <a href="staff" class="<?=$page_staff;?> btn btn-dark btn-lg btn-block py-4">Staff</a>

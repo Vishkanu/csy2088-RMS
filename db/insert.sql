@@ -45,6 +45,9 @@ INSERT INTO modules
 VALUES ('C1002', 1, 20, 'Fundamentals of Computer Science - Continued', 50, NULL, 50, 99100000);
 
 INSERT INTO modules
+VALUES ('C1003', 1, 20, 'Software Engineering Fundamentals', 50, NULL, 50, 99100000);
+
+INSERT INTO modules
 VALUES ('C2001', 1, 20, 'Bleeps and Bloops - An Introduction', NULL, 50, 50, 99100000);
 
 INSERT INTO modules
@@ -62,6 +65,9 @@ VALUES (1, 'C1001');
 
 INSERT INTO course_modules
 VALUES (1, 'C1002');
+
+INSERT INTO course_modules
+VALUES (2, 'C1003');
 
 INSERT INTO course_modules
 VALUES (1, 'C2001');

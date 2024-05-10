@@ -37,6 +37,10 @@
                                             ?>
                                                 <td><a href='course_modules?course_id=<?=$row[$primaryKey];?>'>GO</a></td>
                                             <?php
+                                            } else if ($currentPage == 'page_personal_tutors') {
+                                            ?>
+                                                <td><a href='tutees?staff_id=<?=$row[$primaryKey];?>'>GO</a></td>
+                                            <?php
                                             } else {
                                             ?>
                                                 <td><a href='edit?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>EDIT</a></td>

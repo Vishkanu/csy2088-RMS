@@ -23,7 +23,7 @@ class RMSController
 					'student_personal_tutor'
 				],
 				// options for input fields on edit forms (some are readonly)
-				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', ''],
+				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', '', ''],
 				// does this table need the password reset form on the edit page?
 				'hasPassword' => true,
 				'primaryKey' => 'student_id'
@@ -350,7 +350,66 @@ class RMSController
 			'primaryKey' => 'module_id',
 			'dbTable' => $dbTable
 		];
+	}
 
+	public function personal_tutors()
+	{
+		// redirects - need to be logged in; need appropriate $_GET vars set
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		}
+
+		// remove unwanted fields from table
+		$dbTable = $this->db->get(['*'], 'staff', 'staff_role_pt', 1, \PDO::FETCH_ASSOC);
+		$newTable = [];
+		foreach ($dbTable as $row) {
+			unset($row['staff_password']);
+			array_push($newTable, $row);
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Personal Tutors',
+			'currentPage' => 'page_personal_tutors',
+			'tableName' => 'students',
+			'primaryKey' => 'staff_id',
+			'dbTable' => $newTable
+		];
+	}
+
+	public function tutees()
+	{
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		} else if (!isset($_GET['staff_id'])) {
+			header('Location: /rms/home');
+		}
+
+		// remove unwanted fields from the table + substitute FKs for strings
+		$dbTable = $this->db->get(['*'], 'students', 'student_personal_tutor', $_GET['staff_id'], \PDO::FETCH_ASSOC);
+		$newTable = [];
+		foreach ($dbTable as $row) {
+			unset($row['student_password']);
+			unset($row['student_personal_tutor']);
+
+			// catch empty array
+			$course = $this->db->get(['course_name'], 'courses', 'course_id', $row['student_course']);
+			if (empty($course)) {
+				$course = '';
+			} else {
+				$course = $course[0]['course_name'];
+			}
+
+			$row['student_course'] = $course;
+			array_push($newTable, $row);
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Tutees',
+			'currentPage' => 'page_tutees',
+			'primaryKey' => 'student_id',
+			'tableName' => 'students',
+			'dbTable' => $newTable
+		];
 	}
 }
 
