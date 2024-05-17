@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS diaries;
 DROP TABLE IF EXISTS grades;
 DROP TABLE IF EXISTS assignments;
 DROP TABLE IF EXISTS attendance;

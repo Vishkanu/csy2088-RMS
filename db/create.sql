@@ -117,6 +117,14 @@ CREATE TABLE grades (
 	grade_value		CHAR(3)
 );
 
+-- FKs: diary_author
+CREATE TABLE diaries (
+	diary_id		INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
+	diary_author	INTEGER(8),
+	diary_date		DATETIME DEFAULT NOW(),
+	diary_content	VARCHAR(2000)
+);
+
 
 -- ALTERS
 ALTER TABLE modules
@@ -136,6 +144,11 @@ REFERENCES modules(module_id);
 
 -- TODO: set up function for student IDs
 ALTER TABLE staff AUTO_INCREMENT=99100000;
+ALTER TABLE lectures AUTO_INCREMENT=10000000;
+ALTER TABLE attendance AUTO_INCREMENT=30000000;
+ALTER TABLE assignments AUTO_INCREMENT=40000000;
+ALTER TABLE grades AUTO_INCREMENT=50000000;
+ALTER TABLE diaries AUTO_INCREMENT=60000000;
 
 ALTER TABLE students
 ADD CONSTRAINT fk_stu_courses
@@ -182,3 +195,7 @@ ADD CONSTRAINT fk_gr_students
 FOREIGN KEY (student_id)
 REFERENCES students(student_id);
 
+ALTER TABLE diaries
+ADD CONSTRAINT fk_di_staff
+FOREIGN KEY (diary_author)
+REFERENCES staff(staff_id);

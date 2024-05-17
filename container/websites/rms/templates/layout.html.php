@@ -11,7 +11,8 @@ $navArray = [
 	'page_enrolment' => '',
 	'page_courses' => '',
 	'page_modules' => '',
-	'page_personal_tutors' => ''
+	'page_personal_tutors' => '',
+	'page_diaries' => ''
 ];
 $navArray[$currentPage] = 'btn-selected';
 extract($navArray);
@@ -75,6 +76,9 @@ extract($navArray);
                     </li>
                     <li class="nav-item">
                         <a href="enrolment" class="<?=$page_enrolment;?> btn btn-dark btn-lg btn-block py-4">Enrolment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="diaries" class="<?=$page_diaries;?> btn btn-dark btn-lg btn-block py-4">Diaries</a>
                     </li>
                 </ul>
 			</div>

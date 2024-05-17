@@ -68,6 +68,14 @@ class RMSController
 				'inputOpts' => ['readonly', '', '', '', '', '', '', ''],
 				'hasPassword' => false,
 				'primaryKey' => 'module_id'
+			],
+			'diaries' => [
+				'wantedFields' => [
+					'diary_id', 'diary_content'
+				],
+				'inputOpts' => ['readonly', ''],
+				'hasPassword' => false,
+				'primaryKey' => 'diary_id'
 			]
 		];
 	}
@@ -409,6 +417,23 @@ class RMSController
 			'primaryKey' => 'student_id',
 			'tableName' => 'students',
 			'dbTable' => $newTable
+		];
+	}
+
+	public function diaries()
+	{
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		}
+
+		$dbTable = $this->db->get(['diary_id', 'diary_date', 'diary_content'], 'diaries', 'diary_author', $_SESSION['auth_id'], \PDO::FETCH_ASSOC);
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Diaries',
+			'currentPage' => 'page_diaries',
+			'primaryKey' => 'diary_id',
+			'tableName' => 'diaries',
+			'dbTable' => $dbTable
 		];
 	}
 }

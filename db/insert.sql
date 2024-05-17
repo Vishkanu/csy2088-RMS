@@ -124,3 +124,11 @@ INSERT INTO grades
 VALUES
 (50000001, 40000001, 22400001, 'A+'),
 (50000002, 40000002, 22400001, 'B+');
+
+-- diaries table
+INSERT INTO diaries
+VALUES
+(60000001, 99100000, current_timestamp, 'This is a diary entry'),
+(60000002, 99100000, current_timestamp, 'This is another diary entry'),
+(60000003, 99100000, current_timestamp, 'This is yet another diary entry');
+
