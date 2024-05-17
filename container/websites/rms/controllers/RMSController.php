@@ -80,6 +80,13 @@ class RMSController
 		];
 	}
 
+	public function __call($name, $arguments)
+	{
+		if (!method_exists($this, $name)) {
+			header('Location: /rms/home');
+		}
+	}
+
 	public function login()
 	{
 		$returnArr = ['title' => 'Woodlands University: Staff RMS Login'];

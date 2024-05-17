@@ -25,16 +25,15 @@ else {
 	$page = $controllers[$controllerName]->$action();
 }
 
-$allowedActions = ['students', 'home', 'staff', 'edit', 'attendance', 'attendance_register', 'assignments', 'grades', 'courses', 'course_modules', 'modules', 'personal_tutors', 'tutees', 'diaries'];
-
-if (isset($controllerName) && in_array($action, $allowedActions))
-{
-	$page['templateName'] = $action;
-	echo loadTemplate("../templates/layout.html.php", $page);
-}
-else if (isset($controllerName) && $action == 'login')
+if (isset($controllerName) && $action == 'login')
 {
 	// Login page has different layout to RMS interface
 	echo loadTemplate("../templates/head.html.php", $page);
 	echo loadTemplate("../templates/login.html.php", $page);
 }
+else
+{
+	$page['templateName'] = $action;
+	echo loadTemplate("../templates/layout.html.php", $page);
+}
+
