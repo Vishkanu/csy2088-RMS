@@ -98,6 +98,42 @@ class DatabaseHandler
 		return $stmt->execute(['id' => $id]);
 	}
 
+	// insert record, hashing the values where the key includes the string 'password'
+	public function insertRecord($table, $values)
+	{
+		$keyString = '';
+		$valString = '';
+
+		foreach ($values as $key => $value) {
+			$keyString = $keyString . "$key, ";
+
+			// make empty strings NULL, trying to set a numerical field to an empty string raises - you guessed it - an SQL exception
+			if ($value == '' || $value == 0) {
+				$valString = $valString . "NULL, ";
+			}
+			// don't place numeric values in quotes - SQL exception
+			else if (is_numeric($value)) {
+				$valString = $valString . "$value, ";
+			}
+			// hash value if key contains 'password'
+			else if (str_contains($key, 'password')) {
+				$hashedValue = password_hash($key, PASSWORD_DEFAULT);
+				$valString = $valString . "'$hashedValue', ";
+			}
+			else {
+				$valString = $valString . "'$value', ";
+			}
+		}
+		$keyString = rtrim($keyString, ', ');
+		$valString = rtrim($valString, ', ');
+
+		$sql = "INSERT INTO $table ($keyString) VALUES ($valString)";
+		$stmt = $this->pdo->prepare($sql);
+
+		// return true/false if db insert succeeds/fails
+		return $stmt->execute();
+	}
+
 	public function updatePassword($table, $newPassword, $pk, $id)
 	{
 		$passwordFields = [

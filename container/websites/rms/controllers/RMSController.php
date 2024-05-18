@@ -75,7 +75,10 @@ class RMSController
 				],
 				'inputOpts' => ['readonly', ''],
 				'hasPassword' => false,
-				'primaryKey' => 'diary_id'
+				'primaryKey' => 'diary_id',
+				'insertFields' => [
+					'diary_content'
+				]
 			]
 		];
 	}
@@ -215,6 +218,41 @@ class RMSController
 			'inputOpts' => $this->editData[$_GET['table']]['inputOpts'],
 			'hasPassword' => $this->editData[$_GET['table']]['hasPassword'],
 			'userRecord' => $this->db->get($this->editData[$_GET['table']]['wantedFields'], $_GET['table'], $this->editData[$_GET['table']]['primaryKey'], $_GET['id'])[0]
+		];
+	}
+
+	// adds data to database insert that will NOT be entered by the user
+	private function silentInserts()
+	{
+		if ($_GET['table'] == 'diaries') {
+			$_POST['diary_author'] = $_SESSION['auth_id'];
+			return 'diaries';
+		}
+	}
+
+	public function create()
+	{
+		// redirects - need to be logged in; need appropriate $_GET vars set
+		if (!isset($_SESSION['auth_id'])) {
+			header('Location: /rms/login');
+		} else if (!isset($_GET['table'])) {
+			header('Location: /rms/home');
+		}
+
+		// record insert logic
+		if (isset($_POST['submit'])) {
+			unset($_POST['submit']);
+			$returnPage = $this->silentInserts();
+			$this->db->insertRecord($_GET['table'], $_POST);
+			unset($_POST);
+			// return to appropriate page after insert
+			header("Location: /rms/$returnPage");
+		}
+
+		return [
+			'title' => 'Woodlands University - Records Management System - Create Record',
+			'currentPage' => 'page_create',
+			'fieldNames' => $this->editData[$_GET['table']]['insertFields']
 		];
 	}
 
