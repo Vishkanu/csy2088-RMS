@@ -201,6 +201,7 @@ class RMSController
 			'currentPage' => 'page_students',
 			'primaryKey' => 'student_id',
 			'tableName' => 'students',
+			'insertTableName' => 'students',
 			'dbTable' => $newTable
 		];
 	}
@@ -224,6 +225,7 @@ class RMSController
 			'currentPage' => 'page_staff',
 			'primaryKey' => 'staff_id',
 			'tableName' => 'staff',
+			'insertTableName' => 'staff',
 			'dbTable' => $newTable
 		];
 	}
@@ -331,6 +333,7 @@ class RMSController
 			'currentPage' => 'page_attendance',
 			'tableName' => 'attendance',
 			'primaryKey' => 'lecture_id',
+			'insertTableName' => 'lectures',
 			'dbTable' => $this->db->get_all('lectures')
 		];
 	}
@@ -374,6 +377,7 @@ class RMSController
 			'currentPage' => 'page_assignments',
 			'tableName' => 'assignments',
 			'primaryKey' => 'assignment_id',
+			'insertTableName' => 'assignments',
 			'dbTable' => $this->db->get_all('assignments')
 		];
 	}
@@ -426,6 +430,7 @@ class RMSController
 			'currentPage' => 'page_courses',
 			'tableName' => 'courses',
 			'primaryKey' => 'course_id',
+			'insertTableName' => 'courses',
 			'dbTable' => $dbTable
 		];
 	}
@@ -444,6 +449,7 @@ class RMSController
 			'currentPage' => 'page_modules',
 			'tableName' => 'modules',
 			'primaryKey' => 'module_id',
+			'insertTableName' => 'modules',
 			'dbTable' => $dbTable
 		];
 	}
@@ -464,6 +470,7 @@ class RMSController
 			'currentPage' => 'page_course_modules',
 			'tableName' => 'modules',
 			'primaryKey' => 'module_id',
+			'insertTableName' => 'course_modules',
 			'dbTable' => $dbTable
 		];
 	}
@@ -541,6 +548,7 @@ class RMSController
 			'currentPage' => 'page_diaries',
 			'primaryKey' => 'diary_id',
 			'tableName' => 'diaries',
+			'insertTableName' => 'diaries',
 			'dbTable' => $dbTable
 		];
 	}

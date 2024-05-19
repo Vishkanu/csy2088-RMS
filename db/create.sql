@@ -25,7 +25,7 @@ CREATE TABLE staff (
 	staff_telephone		VARCHAR(255),
 	staff_email			VARCHAR(255) UNIQUE,
 	staff_password		VARCHAR(255),
-	staff_status		CHAR(1),
+	staff_status		CHAR(1) DEFAULT 'L',
 	staff_status_reason	VARCHAR(255),
 	staff_specialism	VARCHAR(255),
 	staff_lastlogged	DATETIME DEFAULT NOW()
@@ -74,7 +74,7 @@ CREATE TABLE students (
 	student_telephone				VARCHAR(255),
 	student_email					VARCHAR(255),
 	student_password				VARCHAR(255),
-	student_status					CHAR(1),
+	student_status					CHAR(1) DEFAULT 'L',
 	student_status_reason			VARCHAR(255),
 	student_course					INTEGER(8),
 	student_entry_qualifications	VARCHAR(255),
