@@ -98,11 +98,36 @@ class DatabaseHandler
 		return $stmt->execute(['id' => $id]);
 	}
 
+	// check that student id prefix is correct, change db AUTO_INCREMENT if not
+	private function studentIncrementCheck()
+	{
+		$date21st = new \DateTime('2000-01-01 00:00:00');
+		$dateNow = new \DateTime();
+		$dateDiff = date_diff($date21st, $dateNow);
+		$centuryDiff = $dateDiff->format('%y')/100;
+
+		$count = 2;
+		while ($centuryDiff >= 1.0) {
+			$count++;
+			$centuryDiff--;
+		}
+
+		$studentIdPrefix = $count . $dateNow->format('y') . '00000';
+
+		$sql = "ALTER TABLE students AUTO_INCREMENT=" . $studentIdPrefix;
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute();
+	}
+
 	// insert record, hashing the values where the key includes the string 'password'
 	public function insertRecord($table, $values)
 	{
 		$keyString = '';
 		$valString = '';
+
+		if ($table == 'students') {
+			$this->studentIncrementCheck();
+		}
 
 		foreach ($values as $key => $value) {
 			$keyString = $keyString . "$key, ";

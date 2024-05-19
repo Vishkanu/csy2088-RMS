@@ -26,7 +26,13 @@ class RMSController
 				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', '', ''],
 				// does this table need the password reset form on the edit page?
 				'hasPassword' => true,
-				'primaryKey' => 'student_id'
+				'primaryKey' => 'student_id',
+				'insertFields' => [
+					'student_forename', 'student_middle_names', 'student_surname',
+					'student_term_address', 'student_nonterm_address', 'student_telephone',
+					'student_email', 'student_status', 'student_status_reason',
+					'student_course', 'student_entry_qualifications', 'student_personal_tutor'
+				]
 			],
 			'staff' => [
 				'wantedFields' => [
@@ -38,7 +44,13 @@ class RMSController
 				],
 				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', '', ''],
 				'hasPassword' => true,
-				'primaryKey' => 'staff_id'
+				'primaryKey' => 'staff_id',
+				'insertFields' => [
+					'staff_forename', 'staff_middle_names',	'staff_surname',
+					'staff_role_cl', 'staff_role_ml', 'staff_role_pt',
+					'staff_address', 'staff_telephone', 'staff_email',
+					'staff_status', 'staff_status_reason', 'staff_specialism'
+				]
 			],
 			'attendance' => [
 				'wantedFields' => [
@@ -50,6 +62,12 @@ class RMSController
 				// we're searching by FK lecture_id here, instead of PK
 				'primaryKey' => 'attendance_id'
 			],
+			'lectures' => [
+				'insertFields' => [
+					'module_id', 'module_week', 'lecture_room',
+					'lecture_datetime', 'lecture_duration'
+				]
+			],
 			'grades' => [
 				'wantedFields' => [
 					'grade_id', 'assignment_id', 'student_id',
@@ -59,6 +77,11 @@ class RMSController
 				'hasPassword' => false,
 				'primaryKey' => 'grade_id'
 			],
+			'courses' => [
+				'insertFields' => [
+					'course_name'
+				]
+			],
 			'modules' => [
 				'wantedFields' => [
 					'module_id', 'module_year', 'module_points',
@@ -67,7 +90,22 @@ class RMSController
 				],
 				'inputOpts' => ['readonly', '', '', '', '', '', '', ''],
 				'hasPassword' => false,
-				'primaryKey' => 'module_id'
+				'primaryKey' => 'module_id',
+				'insertFields' => [
+					'module_id', 'module_year', 'module_points',
+					'module_title', 'module_as1', 'module_as2',
+					'module_exam', 'module_leader'
+				]
+			],
+			'course_modules' => [
+				'insertFields' => [
+					'module_id'
+				]
+			],
+			'assignments' => [
+				'insertFields' => [
+					'assignment_name', 'assignment_module'
+				]
 			],
 			'diaries' => [
 				'wantedFields' => [
@@ -227,6 +265,31 @@ class RMSController
 		if ($_GET['table'] == 'diaries') {
 			$_POST['diary_author'] = $_SESSION['auth_id'];
 			return 'diaries';
+		}
+		else if ($_GET['table'] == 'modules') {
+			return 'modules';
+		}
+		else if ($_GET['table'] == 'staff') {
+			return 'staff';
+		}
+		else if ($_GET['table'] == 'courses') {
+			return 'courses';
+		}
+		else if ($_GET['table'] == 'students') {
+			return 'students';
+		}
+		else if ($_GET['table'] == 'assignments') {
+			return 'assignments';
+		}
+		else if ($_GET['table'] == 'lectures') {
+			return 'attendance';
+		}
+		else if ($_GET['table'] == 'course_modules') {
+			$_POST['course_id'] = $_GET['course_id'];
+			return 'attendance';
+		}
+		else {
+			return 'home';
 		}
 	}
 

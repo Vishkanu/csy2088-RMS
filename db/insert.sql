@@ -104,14 +104,7 @@ VALUES (10000003, 'C2001', 1, 'C3', '2024-05-08 10:00:00', 180);
 INSERT INTO lectures
 VALUES (10000004, 'C2002', 1, 'C3', '2024-05-08 13:30:00', 180);
 
--- attendance table
-INSERT INTO attendance
-VALUES
-(30000001, 22400001, 10000001, 'O'),
-(30000002, 22400001, 10000002, 'X'),
-(30000003, 22400002, 10000003, 'X'),
-(30000004, 22400002, 10000004, 'O'),
-(30000005, 22400002, 10000001, 'O');
+-- attendance table inserts are handled via database trigger tr_attendance_students
 
 -- assignments table
 INSERT INTO assignments
@@ -119,7 +112,7 @@ VALUES
 (40000001, 'AS1 - Intro Project', 'C1001'),
 (40000002, 'AS2 - Second Project', 'C1001');
 
--- grades table inserts are handled via database trigger tr_assignment_grade
+-- grades table inserts are handled via database trigger tr_assignment_grades
 
 -- diaries table
 INSERT INTO diaries

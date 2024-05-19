@@ -95,7 +95,7 @@ CREATE TABLE lectures (
 
 -- FKs: student_id, lecture_id
 CREATE TABLE attendance (
-	attendance_id		INTEGER(8) PRIMARY KEY,
+	attendance_id		INTEGER(8) PRIMARY KEY AUTO_INCREMENT,
 	student_id			INTEGER(8),
 	lecture_id			INTEGER(8),
 	attendance_value	CHAR(1),
@@ -127,12 +127,23 @@ CREATE TABLE diaries (
 
 
 -- TRIGGERS
-CREATE TRIGGER tr_assignment_grade
+
+-- create blank grade entries for appropriate students when assignment is created
+CREATE TRIGGER tr_assignment_grades
 AFTER INSERT ON assignments
 FOR EACH ROW
 	INSERT INTO grades (assignment_id, student_id)
 	SELECT NEW.assignment_id, student_id FROM students
 	WHERE student_course = (SELECT course_id FROM course_modules WHERE module_id = NEW.assignment_module)
+;
+
+-- create blank attendance entries for appropriate students when lecture is created
+CREATE TRIGGER tr_attendance_students
+AFTER INSERT ON lectures
+FOR EACH ROW
+	INSERT INTO attendance (student_id, lecture_id)
+	SELECT student_id, NEW.lecture_id FROM students
+	WHERE student_course = (SELECT course_id FROM course_modules WHERE module_id = NEW.module_id)
 ;
 
 
