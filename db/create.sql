@@ -126,6 +126,16 @@ CREATE TABLE diaries (
 );
 
 
+-- TRIGGERS
+CREATE TRIGGER tr_assignment_grade
+AFTER INSERT ON assignments
+FOR EACH ROW
+	INSERT INTO grades (assignment_id, student_id)
+	SELECT NEW.assignment_id, student_id FROM students
+	WHERE student_course = (SELECT course_id FROM course_modules WHERE module_id = NEW.assignment_module)
+;
+
+
 -- ALTERS
 ALTER TABLE modules
 ADD CONSTRAINT fk_mod_staff
