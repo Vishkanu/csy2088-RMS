@@ -173,6 +173,20 @@ class DatabaseHandler
 		// return true/false if db update succeeds/fails
 		return $stmt->execute(['id' => $id]);
 	}
+
+	// generic DELETE FROM $table WHERE $id = $value function
+	public function deleteRecord($table, $id, $value)
+	{
+		if (!is_numeric($value)) {
+			$sql = "DELETE FROM $table WHERE $id = '$value'";
+		}
+		else {
+			$sql = "DELETE FROM $table WHERE $id = $value";
+		}
+
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute();
+	}
 }
 
 

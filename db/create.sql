@@ -148,22 +148,6 @@ FOR EACH ROW
 
 
 -- ALTERS
-ALTER TABLE modules
-ADD CONSTRAINT fk_mod_staff
-FOREIGN KEY (module_leader)
-REFERENCES staff(staff_id);
-
-ALTER TABLE course_modules
-ADD CONSTRAINT fk_cm_courses
-FOREIGN KEY (course_id)
-REFERENCES courses(course_id);
-
-ALTER TABLE course_modules
-ADD CONSTRAINT fk_cm_modules
-FOREIGN KEY (module_id)
-REFERENCES modules(module_id);
-
--- TODO: set up function for student IDs
 ALTER TABLE staff AUTO_INCREMENT=99100000;
 ALTER TABLE lectures AUTO_INCREMENT=10000000;
 ALTER TABLE attendance AUTO_INCREMENT=30000000;
@@ -172,52 +156,80 @@ ALTER TABLE grades AUTO_INCREMENT=50000000;
 ALTER TABLE diaries AUTO_INCREMENT=60000000;
 ALTER TABLE courses AUTO_INCREMENT=70000000;
 
+ALTER TABLE modules
+ADD CONSTRAINT fk_mod_staff
+FOREIGN KEY (module_leader)
+REFERENCES staff(staff_id)
+ON DELETE CASCADE;
+
+ALTER TABLE course_modules
+ADD CONSTRAINT fk_cm_courses
+FOREIGN KEY (course_id)
+REFERENCES courses(course_id)
+ON DELETE CASCADE;
+
+ALTER TABLE course_modules
+ADD CONSTRAINT fk_cm_modules
+FOREIGN KEY (module_id)
+REFERENCES modules(module_id)
+ON DELETE CASCADE;
+
 ALTER TABLE students
 ADD CONSTRAINT fk_stu_courses
 FOREIGN KEY (student_course)
-REFERENCES courses(course_id);
+REFERENCES courses(course_id)
+ON DELETE CASCADE;
 
 ALTER TABLE students
 ADD CONSTRAINT fk_stu_staff
 FOREIGN KEY (student_personal_tutor)
-REFERENCES staff(staff_id);
+REFERENCES staff(staff_id)
+ON DELETE CASCADE;
 
 ALTER TABLE lectures
 ADD CONSTRAINT fk_lec_modules
 FOREIGN KEY (module_id)
-REFERENCES modules(module_id);
+REFERENCES modules(module_id)
+ON DELETE CASCADE;
 
 ALTER TABLE lectures
 ADD CONSTRAINT fk_lec_rooms
 FOREIGN KEY (lecture_room)
-REFERENCES rooms(room_id);
+REFERENCES rooms(room_id)
+ON DELETE CASCADE;
 
 ALTER TABLE attendance
 ADD CONSTRAINT fk_att_students
 FOREIGN KEY (student_id)
-REFERENCES students(student_id);
+REFERENCES students(student_id)
+ON DELETE CASCADE;
 
 ALTER TABLE attendance
 ADD CONSTRAINT fk_att_lectures
 FOREIGN KEY (lecture_id)
-REFERENCES lectures(lecture_id);
+REFERENCES lectures(lecture_id)
+ON DELETE CASCADE;
 
 ALTER TABLE assignments 
 ADD CONSTRAINT fk_ass_modules
 FOREIGN KEY (assignment_module)
-REFERENCES modules(module_id);
+REFERENCES modules(module_id)
+ON DELETE CASCADE;
 
 ALTER TABLE grades
 ADD CONSTRAINT fk_gr_assignments
 FOREIGN KEY (assignment_id)
-REFERENCES assignments(assignment_id);
+REFERENCES assignments(assignment_id)
+ON DELETE CASCADE;
 
 ALTER TABLE grades
 ADD CONSTRAINT fk_gr_students
 FOREIGN KEY (student_id)
-REFERENCES students(student_id);
+REFERENCES students(student_id)
+ON DELETE CASCADE;
 
 ALTER TABLE diaries
 ADD CONSTRAINT fk_di_staff
 FOREIGN KEY (diary_author)
-REFERENCES staff(staff_id);
+REFERENCES staff(staff_id)
+ON DELETE CASCADE;

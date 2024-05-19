@@ -27,6 +27,7 @@ class RMSController
 				// does this table need the password reset form on the edit page?
 				'hasPassword' => true,
 				'primaryKey' => 'student_id',
+				'returnPage' => 'students',
 				'insertFields' => [
 					'student_forename', 'student_middle_names', 'student_surname',
 					'student_term_address', 'student_nonterm_address', 'student_telephone',
@@ -45,6 +46,7 @@ class RMSController
 				'inputOpts' => ['readonly', '', '', '', '', '', '', '', '', '', '', '', ''],
 				'hasPassword' => true,
 				'primaryKey' => 'staff_id',
+				'returnPage' => 'staff',
 				'insertFields' => [
 					'staff_forename', 'staff_middle_names',	'staff_surname',
 					'staff_role_cl', 'staff_role_ml', 'staff_role_pt',
@@ -66,7 +68,8 @@ class RMSController
 				'insertFields' => [
 					'module_id', 'module_week', 'lecture_room',
 					'lecture_datetime', 'lecture_duration'
-				]
+				],
+				'returnPage' => 'attendance',
 			],
 			'grades' => [
 				'wantedFields' => [
@@ -80,7 +83,8 @@ class RMSController
 			'courses' => [
 				'insertFields' => [
 					'course_name'
-				]
+				],
+				'returnPage' => 'courses',
 			],
 			'modules' => [
 				'wantedFields' => [
@@ -91,6 +95,7 @@ class RMSController
 				'inputOpts' => ['readonly', '', '', '', '', '', '', ''],
 				'hasPassword' => false,
 				'primaryKey' => 'module_id',
+				'returnPage' => 'modules',
 				'insertFields' => [
 					'module_id', 'module_year', 'module_points',
 					'module_title', 'module_as1', 'module_as2',
@@ -100,12 +105,14 @@ class RMSController
 			'course_modules' => [
 				'insertFields' => [
 					'module_id'
-				]
+				],
+				'returnPage' => 'attendance',
 			],
 			'assignments' => [
 				'insertFields' => [
 					'assignment_name', 'assignment_module'
-				]
+				],
+				'returnPage' => 'assignments',
 			],
 			'diaries' => [
 				'wantedFields' => [
@@ -114,6 +121,7 @@ class RMSController
 				'inputOpts' => ['readonly', ''],
 				'hasPassword' => false,
 				'primaryKey' => 'diary_id',
+				'returnPage' => 'diaries',
 				'insertFields' => [
 					'diary_content'
 				]
@@ -268,30 +276,9 @@ class RMSController
 			$_POST['diary_author'] = $_SESSION['auth_id'];
 			return 'diaries';
 		}
-		else if ($_GET['table'] == 'modules') {
-			return 'modules';
-		}
-		else if ($_GET['table'] == 'staff') {
-			return 'staff';
-		}
-		else if ($_GET['table'] == 'courses') {
-			return 'courses';
-		}
-		else if ($_GET['table'] == 'students') {
-			return 'students';
-		}
-		else if ($_GET['table'] == 'assignments') {
-			return 'assignments';
-		}
-		else if ($_GET['table'] == 'lectures') {
-			return 'attendance';
-		}
 		else if ($_GET['table'] == 'course_modules') {
 			$_POST['course_id'] = $_GET['course_id'];
 			return 'attendance';
-		}
-		else {
-			return 'home';
 		}
 	}
 
@@ -307,11 +294,12 @@ class RMSController
 		// record insert logic
 		if (isset($_POST['submit'])) {
 			unset($_POST['submit']);
-			$returnPage = $this->silentInserts();
+			this->silentInserts();
 			$this->db->insertRecord($_GET['table'], $_POST);
+			$returnRoute = $this->editData[$_GET['table']]['returnPage'];
 			unset($_POST);
 			// return to appropriate page after insert
-			header("Location: /rms/$returnPage");
+			header("Location: /rms/$returnRoute");
 		}
 
 		return [
@@ -319,6 +307,17 @@ class RMSController
 			'currentPage' => 'page_create',
 			'fieldNames' => $this->editData[$_GET['table']]['insertFields']
 		];
+	}
+
+	public function delete()
+	{
+		$table = $_GET['table'];
+		$pk = $this->editData[$table]['primaryKey'];
+
+		$this->db->deleteRecord($table, $pk, $_GET['id']);
+		
+		$returnRoute = $this->editData[$_GET['table']]['returnPage'];
+		header("Location: /rms/$returnRoute");
 	}
 
 	// annoyingly named - attendance page DOES NOT call attendance table. It calls lectures table

@@ -75,9 +75,6 @@ extract($navArray);
                         <a href="staff" class="<?=$page_staff;?> btn btn-dark btn-lg btn-block py-4">Staff</a>
                     </li>
                     <li class="nav-item">
-                        <a href="enrolment" class="<?=$page_enrolment;?> btn btn-dark btn-lg btn-block py-4">Enrolment</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="diaries" class="<?=$page_diaries;?> btn btn-dark btn-lg btn-block py-4">Diaries</a>
                     </li>
                 </ul>

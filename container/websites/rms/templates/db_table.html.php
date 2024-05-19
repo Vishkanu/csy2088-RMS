@@ -51,11 +51,17 @@
                                             <?php
                                             } else if ($currentPage == 'page_assignments') {
                                             ?>
-                                                <td><a href='grades?assignment_id=<?=$row[$primaryKey];?>'>GO</a></td>
+												<td>
+													<a href='grades?assignment_id=<?=$row[$primaryKey];?>'>GO</a>
+													<a href='delete?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>DELETE</a>
+												</td>
                                             <?php
                                             } else if ($currentPage == 'page_courses') {
                                             ?>
-                                                <td><a href='course_modules?course_id=<?=$row[$primaryKey];?>'>GO</a></td>
+												<td>
+													<a href='course_modules?course_id=<?=$row[$primaryKey];?>'>GO</a>
+													<a href='delete?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>DELETE</a>
+												</td>
                                             <?php
                                             } else if ($currentPage == 'page_personal_tutors') {
                                             ?>
@@ -63,7 +69,10 @@
                                             <?php
                                             } else {
                                             ?>
-                                                <td><a href='edit?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>EDIT</a></td>
+												<td>
+													<a href='edit?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>EDIT</a>
+													<a href='delete?table=<?=$tableName;?>&id=<?=$row[$primaryKey];?>'>DELETE</a>
+												</td>
 											<?php
                                             }
                                             ?>
