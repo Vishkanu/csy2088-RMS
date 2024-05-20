@@ -294,7 +294,7 @@ class RMSController
 		// record insert logic
 		if (isset($_POST['submit'])) {
 			unset($_POST['submit']);
-			this->silentInserts();
+			$this->silentInserts();
 			$this->db->insertRecord($_GET['table'], $_POST);
 			$returnRoute = $this->editData[$_GET['table']]['returnPage'];
 			unset($_POST);

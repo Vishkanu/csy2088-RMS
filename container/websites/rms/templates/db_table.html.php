@@ -12,7 +12,10 @@
                 <div class="container table-container">
                     <div class="row justify-content-center"> <!-- Center the table -->
                         <div class="col-md-12">
-                            <table class="table">
+							<table class="table">
+							<?php
+							if (isset($dbTable[0])) {
+							?>
                                 <thead>
 									<tr>
 									<?php
@@ -23,7 +26,10 @@
 
                                         <!-- Add more columns here -->
                                     </tr>
-                                </thead>
+								</thead>
+								<?php
+								}
+								?>
 								<tbody>
 									<?php
 									// Display add record button appropriately, where necessary.
@@ -38,6 +44,7 @@
 									<?php
 									}
 
+							if (isset($dbTable[0])) {
 										foreach ($dbTable as $row) { ?>
 											<tr>
 											<?php
@@ -79,7 +86,10 @@
 						
 											</tr>
 										<?php } ?>
-                                </tbody>
+								</tbody>
+								<?php
+								}
+								?>
                             </table>
                         </div>
                     </div>
