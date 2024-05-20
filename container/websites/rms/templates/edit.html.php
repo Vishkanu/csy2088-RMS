@@ -27,8 +27,8 @@ for ($i = 0; $i < sizeof($fieldNames); $i++) { ?>
 <?php
 }
 ?>
-<input type="submit" name="submit">
-<button type="button" onclick="javascript:history.back()">Go Back</button>
+<input type="submit" name="submit" class="btn btn-purple btn-block">
+<button type="button" onclick="javascript:history.back()" class="btn btn-purple btn-block">Go Back</button>
 </form>
 
 <?php
@@ -36,8 +36,8 @@ if (isset($hasPassword) && $hasPassword == true) {
 ?>
 <form method="POST" action="edit?<?=$_SERVER['QUERY_STRING'];?>">
 	<label for="change_password">Password Reset:</label><br>
-	<input type="text" id="change_password" name="change_password"><br>
-<input type="submit" name="submit2">
+	<input type="text" id="change_password" name="change_password" class="btn btn-purple btn-block"><br>
+<input type="submit" name="submit2" class="btn btn-purple btn-block">
 </form>
 <?php
 }

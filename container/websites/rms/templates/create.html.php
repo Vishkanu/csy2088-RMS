@@ -15,8 +15,8 @@ for ($i = 0; $i < sizeof($fieldNames); $i++) { ?>
 <?php
 }
 ?>
-<input type="submit" name="submit">
-<button type="button" onclick="javascript:history.back()">Go Back</button>
+<input type="submit" name="submit" class="btn btn-purple btn-block">
+<button type="button" onclick="javascript:history.back()" class="btn btn-purple btn-block" >Go Back</button>
 </form>
 
 </div>
