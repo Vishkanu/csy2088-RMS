@@ -20,8 +20,8 @@
             <?php } ?>
         </div>
         <div class="form-group text-center">
-            <input type="submit" name="submit" class="btn btn-purple">
-            <button type="button" onclick="javascript:history.back()" class="btn btn-purple">Go Back</button>
+            <input type="submit" name="submit" class="btn btn-purple text-white">
+            <button type="button" onclick="javascript:history.back()" class="btn btn-purple text-white">Go Back</button>
         </div>
     </form>
 </div>

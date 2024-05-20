@@ -34,8 +34,8 @@ foreach (array_keys($userRecord) as $key) {
 				?>
 			</div>
 			<div class="form-group text-center">
-				<input type="submit" name="submit" class="btn btn-purple">
-				<button type="button" onclick="javascript:history.back()" class="btn btn-purple">Go Back</button>
+				<input type="submit" name="submit" class="btn btn-purple text-white">
+				<button type="button" onclick="javascript:history.back()" class="btn btn-purple text-white">Go Back</button>
 			</div>
 
 		</form>
@@ -46,7 +46,7 @@ foreach (array_keys($userRecord) as $key) {
 			<form method="POST" action="edit?<?= $_SERVER['QUERY_STRING']; ?>">
 				<label for="change_password">Password Reset:</label><br>
 				<input type="text" id="change_password" name="change_password"><br>
-				<input type="submit" name="submit2" class="btn btn-purple">
+				<input type="submit" name="submit2" class="btn btn-purple text-white">
 			</form>
 			<?php
 		}
