@@ -7,17 +7,24 @@
 <?php
 // TODO: PRESERVE $_GET VARIABLES ON FORM SUBMISSION
 ?>
-<form method="POST" action="create?<?=$_SERVER['QUERY_STRING'];?>">
-<?php
-for ($i = 0; $i < sizeof($fieldNames); $i++) { ?>
-	<label for="<?=$fieldNames[$i];?>"><?=ucwords(str_replace('_',' ',$fieldNames[$i]));?></label><br>
-	<input type="text" id=<?=$fieldNames[$i];?> name=<?=$fieldNames[$i];?> value=""><br>
-<?php
-}
-?>
-<input type="submit" name="submit" class="btn btn-purple btn-block">
-<button type="button" onclick="javascript:history.back()" class="btn btn-purple btn-block" >Go Back</button>
-</form>
+
+<div class="container mt-5">
+    <form method="POST" action="create?<?= $_SERVER['QUERY_STRING']; ?>">
+        <div class="row">
+            <?php
+            for ($i = 0; $i < sizeof($fieldNames); $i++) { ?>
+                <div class="col-md-6 mb-3">
+                    <label for="<?= $fieldNames[$i]; ?>"><?= ucwords(str_replace('_', ' ', $fieldNames[$i])); ?></label>
+                    <input type="text" id="<?= $fieldNames[$i]; ?>" name="<?= $fieldNames[$i]; ?>" class="form-control" value="">
+                </div>
+            <?php } ?>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" name="submit" class="btn btn-purple">
+            <button type="button" onclick="javascript:history.back()" class="btn btn-purple">Go Back</button>
+        </div>
+    </form>
+</div>
 
 </div>
 
