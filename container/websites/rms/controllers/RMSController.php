@@ -152,7 +152,7 @@ class RMSController
 				$_SESSION['auth_id'] = $auth['staff_id'];
 				$_SESSION['lastlogged'] = $auth['lastlogged'];
 				$_SESSION['auth_name'] = $auth['auth_name'];
-				header('Location: /rms/students');
+				header('Location: /rms/home');
 			}
 			else {
 				$returnArr['auth_failed'] = true;
