@@ -143,7 +143,7 @@ class RMSController
 		// authentication logic
 		if (isset($_SESSION['auth_id'])) {
 			// already authenticated
-			header('Location: /rms/students');
+			header('Location: /rms/home');
 		}
 		else if (isset($_POST['username']) && isset($_POST['password'])) {
 			$auth = $this->db->authenticate_staff($_POST['username'], $_POST['password'], 'staff');
