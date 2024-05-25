@@ -8,8 +8,6 @@
 * launch docker container in ./container .
 * Navigate to https://rms.v.je .
 * Login using credentials.
-	* Username: john@smith.com
-	* Password: 1234
 
 ## Submission Notes
 * Disclaimer: The docker container/environment was not created by us. It is a repurposed version of the container provided by Thomas Butler for module CSY2089.
