@@ -58,7 +58,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`student`@`%`*/ /*!50003 TRIGGER tr_assignment_grades
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER tr_assignment_grades
 AFTER INSERT ON assignments
 FOR EACH ROW
 	INSERT INTO grades (assignment_id, student_id)
@@ -98,30 +98,6 @@ LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
 INSERT INTO `attendance` VALUES (30000000,22400001,10000001,NULL),(30000001,22400002,10000001,NULL),(30000002,22400003,10000001,NULL),(30000003,22400004,10000001,NULL),(30000004,22400005,10000001,NULL),(30000007,22400001,10000002,NULL),(30000008,22400002,10000002,NULL),(30000009,22400003,10000002,NULL),(30000010,22400004,10000002,NULL),(30000011,22400005,10000002,NULL),(30000014,22400001,10000003,NULL),(30000015,22400002,10000003,NULL),(30000016,22400003,10000003,NULL),(30000017,22400004,10000003,NULL),(30000018,22400005,10000003,NULL),(30000021,22400001,10000004,NULL),(30000022,22400002,10000004,NULL),(30000023,22400003,10000004,NULL),(30000024,22400004,10000004,NULL),(30000025,22400005,10000004,NULL);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `boundaries`
---
-
-DROP TABLE IF EXISTS `boundaries`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `boundaries` (
-  `boundaries_id` varchar(2) NOT NULL,
-  `boundaries_range` varchar(6) NOT NULL,
-  `boundaries_class` varchar(10) NOT NULL,
-  PRIMARY KEY (`boundaries_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `boundaries`
---
-
-LOCK TABLES `boundaries` WRITE;
-/*!40000 ALTER TABLE `boundaries` DISABLE KEYS */;
-/*!40000 ALTER TABLE `boundaries` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -199,7 +175,7 @@ CREATE TABLE `diaries` (
 
 LOCK TABLES `diaries` WRITE;
 /*!40000 ALTER TABLE `diaries` DISABLE KEYS */;
-INSERT INTO `diaries` VALUES (60000001,99100000,'2024-05-20 16:17:58','This is a diary entry'),(60000002,99100000,'2024-05-20 16:17:58','This is another diary entry'),(60000003,99100000,'2024-05-20 16:17:58','This is yet another diary entry');
+INSERT INTO `diaries` VALUES (60000001,99100000,'2024-05-25 21:07:40','This is a diary entry'),(60000002,99100000,'2024-05-25 21:07:40','This is another diary entry'),(60000003,99100000,'2024-05-25 21:07:40','This is yet another diary entry');
 /*!40000 ALTER TABLE `diaries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +249,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`student`@`%`*/ /*!50003 TRIGGER tr_attendance_students
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER tr_attendance_students
 AFTER INSERT ON lectures
 FOR EACH ROW
 	INSERT INTO attendance (student_id, lecture_id)
@@ -376,7 +352,7 @@ CREATE TABLE `staff` (
 
 LOCK TABLES `staff` WRITE;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
-INSERT INTO `staff` VALUES (99100000,'JOHN',NULL,'SMITH',NULL,NULL,1,'64 ZOO LANE',NULL,'JOHN@SMITH.COM','$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu','L',NULL,NULL,'2024-05-25 16:45:03');
+INSERT INTO `staff` VALUES (99100000,'JOHN',NULL,'SMITH',NULL,NULL,1,'64 ZOO LANE',NULL,'JOHN@SMITH.COM','$2y$10$RJP5nezpfuwIGBTvqm86geJKzrERjdGIqpON8zRhjO7XFnWheywvu','L',NULL,NULL,'2024-05-25 21:07:40');
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -422,43 +398,6 @@ UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'csy2088_as1'
---
-
---
--- Current Database: `ijdb`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ijdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-
-USE `ijdb`;
-
---
--- Table structure for table `joke`
---
-
-DROP TABLE IF EXISTS `joke`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `joke` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `joketext` text DEFAULT NULL,
-  `jokedate` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `joke`
---
-
-LOCK TABLES `joke` WRITE;
-/*!40000 ALTER TABLE `joke` DISABLE KEYS */;
-INSERT INTO `joke` VALUES (1,'A programmer was found dead in the shower. The instructions read: lather, rinse, repeat.','2023-12-04'),(2,'!false - it\'s funny because it\'s true','2023-01-08'),(3,'Why did the programmer quit his job? He didn\'t get arrays','2023-01-08'),(4,'A man walked into a bar. Ow.','2023-12-05');
-/*!40000 ALTER TABLE `joke` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping routines for database 'ijdb'
 --
 
 --
@@ -653,6 +592,43 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'csy2089'
 --
+
+--
+-- Current Database: `ijdb`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ijdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+
+USE `ijdb`;
+
+--
+-- Table structure for table `joke`
+--
+
+DROP TABLE IF EXISTS `joke`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `joke` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `joketext` text DEFAULT NULL,
+  `jokedate` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `joke`
+--
+
+LOCK TABLES `joke` WRITE;
+/*!40000 ALTER TABLE `joke` DISABLE KEYS */;
+INSERT INTO `joke` VALUES (1,'A programmer was found dead in the shower. The instructions read: lather, rinse, repeat.','2023-12-04'),(2,'!false - it\'s funny because it\'s true','2023-01-08'),(3,'Why did the programmer quit his job? He didn\'t get arrays','2023-01-08'),(4,'A man walked into a bar. Ow.','2023-12-05');
+/*!40000 ALTER TABLE `joke` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'ijdb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -663,4 +639,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-25 16:11:43
+-- Dump completed on 2024-05-25 20:08:05

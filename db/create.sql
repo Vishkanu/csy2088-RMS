@@ -4,13 +4,6 @@ CREATE TABLE rooms (
 	room_capacity	INTEGER(3)
 );
 
--- this table will probably need changing
-CREATE TABLE boundaries (
-	boundaries_id		VARCHAR(2) PRIMARY KEY,
-	boundaries_range	VARCHAR(6) NOT NULL,
-	boundaries_class	VARCHAR(10) NOT NULL
-);
-
 -- staff_status: 'L' for live or 'D' for dormant
 -- staff_status_reason: e.g. retired, resigned, misconduct
 CREATE TABLE staff (
